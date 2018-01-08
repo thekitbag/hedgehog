@@ -10,6 +10,22 @@ db = 'hedgehog.sqlite'
 def main():
     return render_template('index.html')
 
+@app.route('/showHomePage')
+def showHomePage():
+    return render_template('homepage.html')
+
+@app.route('/showTasks')
+def showTasks():
+    return render_template('tasks.html')
+
+@app.route('/showStats')
+def showStats():
+    return render_template('stats.html')
+
+@app.route('/showAddTask')
+def showAddTask():
+    return render_template('addtask.html')
+    
 #routes for button actions
 
 #route for shutting down the sserver
