@@ -2,7 +2,7 @@ from flask import Flask, jsonify, render_template, request, json
 import time
 import sqlite3
 app = Flask(__name__)
-db = 'hedgehog.sqlite' 
+db = 'hedgehog.sqlite3' 
 
 #routes for displaying pages
 
@@ -27,6 +27,14 @@ def showAddTask():
     return render_template('addtask.html')
     
 #routes for button actions
+
+@app.route('/getTasks',methods=['POST','GET'])
+def getTasks():    
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT * FROM Tasks")
+    all_rows = c.fetchall()
+    return jsonify(all_rows)
 
 #route for shutting down the sserver
 

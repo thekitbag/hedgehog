@@ -3,9 +3,9 @@
 
 <head>
     <title>Hedgehog</title>    
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=10">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=11">
     <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/homepage.js?version=7"></script>
+    <script src="../static/js/tasks.js?version=16"></script>
 </head>
 
 <body>
@@ -14,16 +14,23 @@
 	</div>
 	<div class="main">
 		<h1>List of Tasks!</h1>
+    <div class="bggb" id="btnGetTasks">
+      <h1>Get All Tasks</h1>
+    </div>
 		<table id="tableOfTasks">
           <thead>
             <tr>
                 <th>Title</th>
                 <th>Description</th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>Type</th>
+                <th>Epic</th>
+                <th>Complexity</th>
+                <th>Time</th>
+                <th>Urgency</th>
+                <th>Importance</th>
+                <th>Deadline</th>
+                <th>Deadline Type</th>
+                <th>Status</th>
             </tr>
           </thead>
           <tbody>
