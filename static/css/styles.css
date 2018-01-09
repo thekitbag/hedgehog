@@ -117,8 +117,19 @@ html, body {
 #view-stats-button:hover {
     cursor: pointer;
     background-color: purple;
+}
+
+.bggb {
+    height: 50px;
+    width: 200px;
+    background-color: lime;
+    border-radius: 8px;
 }       
-         
+
+#btnGetTasks:hover {
+    cursor: pointer;
+    background-color: green;
+}         
 
 .footer {
     height: 10%;
@@ -127,4 +138,8 @@ html, body {
     bottom: 0;
     width: 100%;
     background-color: beige;
+}
+
+.test {
+    height:100px;
 }
