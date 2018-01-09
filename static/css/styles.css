@@ -140,6 +140,27 @@ html, body {
     background-color: beige;
 }
 
-.test {
-    height:100px;
+.form-add-task {
+    height: 100%;
+    width: 80%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-left: 10%;
+    font-size: 32px;
 }
+
+.field-title {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.field-input {
+    height: 30px;
+    width: 97%;
+    display: block;
+    font-size: 24px;
+    margin-left: 15px;
+    margin-top: 10px;
+
+
