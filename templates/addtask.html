@@ -14,56 +14,63 @@
 	</div>
 	<div class="main">
 		<h1>Add a Task!</h1> 
-		<form class="form-add-task">		  	
-          <label for="inputTitle" class="field-title" id="title-title">Title</label>
-          <input name="inputTitle" id="inputTitle" class="field-input" required>      
-          <label for="inputDescription" class="field-title">Description</label>
-          <input name="inputDescription" id="inputDescription" class="field-input" required>
-          <label for="inputType" class="field-title">Type</label>
-          <input name="inputType" id="inputType" class="field-input">
-          <label for="inputEpic" class="field-title">Epic</label>
-          <input name="inputEpic" id="inputEpic" class="field-input">	      
-          <label for="inputComplexity" class="field-title">Complexity</label>
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          <label for="inputTime" class="field-title">Time</label>
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          <label for="inputUrgency" class="field-title">Urgency</label>
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          <label for="inputImportance" class="field-title">Importance</label>
-            <select>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-          <label for="inputDeadline" class="field-title">Time</label>
-          <input type="date" name="inputDeadline" id="inputDeadline" class="field-date" required>
-          <label for="deadlineType" class="field-title">Deadline Type</label>
-            <select>
-              <option value="HARD">HARD</option>
-              <option value="SOFT">SOFT</option>
-            </select>        
-          <button id="btnAddTask" class="bggb" type="button">Enter</button>
-        </form>
+		<form class="form-add-task">
+		  <div id="primaryFields">		  	
+	          <label for="inputTitle" class="field-title" id="title-title">Title</label>
+	          <input name="inputTitle" id="inputTitle" class="field-input" required>      
+	          <label for="inputDescription" class="field-title">Description</label>
+	          <input name="inputDescription" id="inputDescription" class="field-input" required>
+	          <label for="inputType" class="field-title">Type</label>
+	          <input name="inputType" id="inputType" class="field-input">
+	          <label for="inputEpic" class="field-title">Epic</label>
+	          <input name="inputEpic" id="inputEpic" class="field-input">
+	      </div>
+	      <div id="secondaryFields">
+	          <label for="inputComplexity" class="field-title">Complexity</label>
+	            <select>
+	              <option value="1">1</option>
+	              <option value="2">2</option>
+	              <option value="3">3</option>
+	              <option value="4">4</option>
+	              <option value="5">5</option>
+	            </select>
+	          <label for="inputTime" class="field-title">Time</label>
+	            <select>
+	              <option value="1">1</option>
+	              <option value="2">2</option>
+	              <option value="3">3</option>
+	              <option value="4">4</option>
+	              <option value="5">5</option>
+	            </select>
+	          <label for="inputUrgency" class="field-title">Urgency</label>
+	            <select>
+	              <option value="1">1</option>
+	              <option value="2">2</option>
+	              <option value="3">3</option>
+	              <option value="4">4</option>
+	              <option value="5">5</option>
+	            </select>
+	          <label for="inputImportance" class="field-title">Importance</label>
+	            <select>
+	              <option value="1">1</option>
+	              <option value="2">2</option>
+	              <option value="3">3</option>
+	              <option value="4">4</option>
+	              <option value="5">5</option>
+	            </select>
+	        </div>
+	        <div id="tertiaryFields">
+	          <label for="inputDeadline" class="field-title">Time</label>
+	          <input type="date" name="inputDeadline" id="inputDeadline" class="field-date" required>
+	          <label for="deadlineType" class="field-title">Deadline Type</label>
+	            <select>
+	              <option value="HARD">HARD</option>
+	              <option value="SOFT">SOFT</option>
+	            </select>        
+	          <button id="btnAddTask" class="bggb" type="button">Enter</button>
+	        </div>
+	        <img id="nextArrow" src="../static/images/arrow.jpg" alt="arrow" height="42" width="42">
+        </form>        
 	</div>
 	
 	<div class ="footer">
