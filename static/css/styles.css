@@ -141,12 +141,12 @@ html, body {
 }
 
 .form-add-task {
-    height: 75%;
+    height: 66%;
     width: 80%;
     border: 1px solid black;
     border-collapse: collapse;
     margin-left: 10%;
-    font-size: 32px;
+    font-size: 26px;
 }
 
 .field-title {
@@ -184,4 +184,54 @@ html, body {
     cursor: pointer;
 }
 
+.progress-ball {
+    height: 30px;
+    width: 30px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: #DCDCDC;
+    margin-top: 5px;
+}
 
+#ball1 {
+    margin-left: 25%;
+    background-color: green;
+}
+
+.progress-line {
+    height:3px;
+    width:20%;
+    margin-top: 1px;
+    background-color: black;
+    margin-top: 20px;
+
+}
+
+#progressBar {
+    background-color: pink;
+    padding-top: 0%;
+    height: 40px;
+    width: 100%;
+    display: -webkit-inline-box;
+}
+
+
+#btnNextFields1 {
+    float: right;
+    position: relative;
+    bottom: 50px;
+}
+
+#btnNextFields2 {
+    float: right;
+    position: relative;
+    bottom: 50px;
+    display:none;
+}
+
+#btnAddTask {
+    float: right;
+    position: relative;
+    bottom: 50px;
+    display:none;
+}

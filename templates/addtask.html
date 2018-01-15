@@ -5,7 +5,7 @@
     <title>Hedgehog</title>    
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=6">
     <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/addtask.js?version=7"></script>
+    <script src="../static/js/addtask.js?version=8"></script>
 </head>
 
 <body>
@@ -15,6 +15,18 @@
 	<div class="main">
 		<h1>Add a Task!</h1> 
 		<form class="form-add-task">
+		  <div id="progressBar">
+		  	<div class="progress-ball" id="ball1">
+		  	</div>
+		  	<div class="progress-line" id="line1">
+		  	</div>
+		  	<div class="progress-ball" id="ball2">
+		  	</div>
+		  	<div class="progress-line" id="line2">
+		  	</div>
+		  	<div class="progress-ball" id="ball3">
+		  	</div>
+		  </div>
 		  <div id="primaryFields">		  	
 	          <label for="inputTitle" class="field-title" id="title-title">Title</label>
 	          <input name="inputTitle" id="inputTitle" class="field-input" required>      
@@ -66,10 +78,11 @@
 	            <select>
 	              <option value="HARD">HARD</option>
 	              <option value="SOFT">SOFT</option>
-	            </select>        
-	          <button id="btnAddTask" class="bggb" type="button">Enter</button>
+	            </select>  
 	        </div>
-	        <img id="nextArrow" src="../static/images/arrow.jpg" alt="arrow" height="42" width="42">
+	        <button id="btnNextFields1" class="bggb" type="button">Next</button>
+	        <button id="btnNextFields2" class="bggb" type="button">Next</button>
+	        <button id="btnAddTask" class="bggb" type="button">Add Task</button>
         </form>        
 	</div>
 	
