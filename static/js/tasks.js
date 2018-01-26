@@ -1,4 +1,8 @@
 $(function(){
+	$('#btnHome').click(function(){
+		location.href="showHomePage";		
+	});
+	
 	$('#btnGetTasks').click(function() { 
         $.get("/getTasks", function(data){
         	console.log(data);

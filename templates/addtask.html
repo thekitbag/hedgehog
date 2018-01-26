@@ -3,14 +3,15 @@
 
 <head>
     <title>Hedgehog</title>    
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=6">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=10">
     <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/addtask.js?version=8"></script>
+    <script src="../static/js/addtask.js?version=13"></script>
 </head>
 
 <body>
 	<div class="header">
 		<h1>Hedgehog</h1>
+		<button id="btnHome" class="bggb" type="button">Home</button>
 	</div>
 	<div class="main">
 		<h1>Add a Task!</h1> 
@@ -33,52 +34,82 @@
 	          <label for="inputDescription" class="field-title">Description</label>
 	          <input name="inputDescription" id="inputDescription" class="field-input" required>
 	          <label for="inputType" class="field-title">Type</label>
-	          <input name="inputType" id="inputType" class="field-input">
+	          	<select name="inputType" class="dropdown-text">
+	          		<option value="JIRA">JIRA</option>
+	          		<option value="Hipchat">Hipchat</option>
+	          		<option value="Email">Email</option>
+	          		<option value="F2F">F2F</option>
+	          		<option value="Meeting">Meeting</option>
+	          		<option value="Review">Review</option>
+	          		<option value="Think">Think</option>
+	          	</select>	          		
 	          <label for="inputEpic" class="field-title">Epic</label>
-	          <input name="inputEpic" id="inputEpic" class="field-input">
+	          	<select name="inputEpic" class="dropdown-text">
+	          		<option value="Poker - General">Poker - General</option>
+	          		<option value="MBOP">MBOP</option>  
+	          		<option value="Multi-player">Multi-player</option>
+	          		<option value="Personal">Personal</option>
+	          		<option value="Admin">Admin</option>
+	            </select>
 	      </div>
 	      <div id="secondaryFields">
 	          <label for="inputComplexity" class="field-title">Complexity</label>
-	            <select>
-	              <option value="1">1</option>
-	              <option value="2">2</option>
-	              <option value="3">3</option>
-	              <option value="4">4</option>
-	              <option value="5">5</option>
-	            </select>
+	          	<select name="inputComplexity">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">5</option>
+				  <option value="5">8</option>
+				  <option value="13">13</option>
+				  <option value="21">21</option>
+				  <option value="40">40</option>
+				  <option value="100">100</option>
+				</select>
 	          <label for="inputTime" class="field-title">Time</label>
-	            <select>
-	              <option value="1">1</option>
-	              <option value="2">2</option>
-	              <option value="3">3</option>
-	              <option value="4">4</option>
-	              <option value="5">5</option>
-	            </select>
+	          	<select name="inputTime">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">5</option>
+				  <option value="5">8</option>
+				  <option value="13">13</option>
+				  <option value="21">21</option>
+				  <option value="40">40</option>
+				  <option value="100">100</option>
+				</select>		                    
 	          <label for="inputUrgency" class="field-title">Urgency</label>
-	            <select>
-	              <option value="1">1</option>
-	              <option value="2">2</option>
-	              <option value="3">3</option>
-	              <option value="4">4</option>
-	              <option value="5">5</option>
-	            </select>
+	          	<select name="inputUrgency">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">5</option>
+				  <option value="5">8</option>
+				  <option value="13">13</option>
+				  <option value="21">21</option>
+				  <option value="40">40</option>
+				  <option value="100">100</option>
+				</select>
 	          <label for="inputImportance" class="field-title">Importance</label>
-	            <select>
-	              <option value="1">1</option>
-	              <option value="2">2</option>
-	              <option value="3">3</option>
-	              <option value="4">4</option>
-	              <option value="5">5</option>
-	            </select>
+	          	<select name="inputImportance">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">5</option>
+				  <option value="5">8</option>
+				  <option value="13">13</option>
+				  <option value="21">21</option>
+				  <option value="40">40</option>
+				  <option value="100">100</option>
+				</select> 	            
 	        </div>
 	        <div id="tertiaryFields">
-	          <label for="inputDeadline" class="field-title">Time</label>
+	          <label for="inputDeadline" class="field-title">Deadline</label>
 	          <input type="date" name="inputDeadline" id="inputDeadline" class="field-date" required>
 	          <label for="deadlineType" class="field-title">Deadline Type</label>
-	            <select>
-	              <option value="HARD">HARD</option>
-	              <option value="SOFT">SOFT</option>
-	            </select>  
+	          	<select name="deadlineType">
+				  <option value="HARD">HARD</option>
+				  <option value="SOFT">SOFT</option>
+				</select>             
 	        </div>
 	        <button id="btnNextFields1" class="bggb" type="button">Next</button>
 	        <button id="btnNextFields2" class="bggb" type="button">Next</button>

@@ -1,6 +1,6 @@
 $(function(){
-	$('#btname').click(function(){
-		location.href="routename";		
+	$('#btnHome').click(function(){
+		location.href="showHomePage";		
 	});
 
 	$('#killserver').click(function(){
