@@ -129,7 +129,13 @@ html, body {
     width: 200px;
     background-color: lime;
     border-radius: 8px;
-}       
+    display: inline-block;
+}
+
+.bggb:hover { 
+    cursor: pointer;   
+    background-color: green;
+}        
 
 #btnGetTasks:hover {
     cursor: pointer;
@@ -266,4 +272,9 @@ table {
   min-width: 1000px;
   margin-bottom: 25px;
   margin-top: 50px;
+}
+
+.dropdown-text, .dropdown-number {
+    margin-left: 45%;
+    font-size: 24px;
 }

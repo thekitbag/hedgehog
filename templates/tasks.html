@@ -5,22 +5,29 @@
     <title>Hedgehog</title>    
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=12">
     <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/tasks.js?version=16"></script>
+    <script src="../static/js/tasks.js?version=23"></script>
 </head>
-
 <body>
 	<div class="header">
 		<h1>Hedgehog</h1>
     <button id="btnHome" class="bggb" type="button">Home</button>
 	</div>
-	<div class="main">
-		<h1>List of Tasks!</h1>
-    <div class="bggb" id="btnGetTasks">
-      <h1>Get All Tasks</h1>
+	<div class="main">		
+    <div class="action-buttons">  
+      <div class="bggb" id="btnGetInProgress">
+        <p>In Progress</p>
+      </div>              
+      <div class="bggb" id="btnGetTasks">
+        <p>Get All Tasks</p>
+      </div>
+      <div class="bggb" id="btnGetHardDeadlines">
+        <p>Hard Deadlines</p>
+      </div>
     </div>
 		<table id="tableOfTasks">
           <thead>
             <tr>
+                <th></th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>Type</th>
@@ -35,13 +42,11 @@
             </tr>
           </thead>
           <tbody>
-              <tr>
-                <td>Test</td>
+              <tr>                
               </tr>
           </tbody>          
-        </table> 
-	</div>
-	
+    </table> 
+	</div>	
 	<div class ="footer">
 		<button id="killserver" class="bggb" type="button">killserver</button>
 	</div>

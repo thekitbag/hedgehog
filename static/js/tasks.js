@@ -11,11 +11,14 @@ $(function(){
 			var resultsLength = data.length;
 			var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0];
 			for (var i = 0; i < resultsLength; i++) {
-					var row = table.insertRow();					
-					for (var j = 1; j < 12; j++){					
-					var cell1 = row.insertCell();
-					cell1.innerHTML = results[i][j]
-				};
+					var row = table.insertRow();
+					var cell2 = row.insertCell();
+					cell2.innerHTML  = '<button id=a>Start</button'								
+						for (var j = 1; j < 12; j++){					
+						var cell1 = row.insertCell();					
+						cell1.innerHTML = results[i][j]						
+					};
+
 			};
         });
     });

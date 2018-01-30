@@ -3,9 +3,9 @@
 
 <head>
     <title>Hedgehog</title>    
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=10">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=11">
     <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/addtask.js?version=13"></script>
+    <script src="../static/js/addtask.js?version=14"></script>
 </head>
 
 <body>
@@ -54,7 +54,7 @@
 	      </div>
 	      <div id="secondaryFields">
 	          <label for="inputComplexity" class="field-title">Complexity</label>
-	          	<select name="inputComplexity">
+	          	<select name="inputComplexity" class="dropdown-number">
 				  <option value="1">1</option>
 				  <option value="2">2</option>
 				  <option value="3">3</option>
@@ -66,7 +66,7 @@
 				  <option value="100">100</option>
 				</select>
 	          <label for="inputTime" class="field-title">Time</label>
-	          	<select name="inputTime">
+	          	<select name="inputTime" class="dropdown-number">
 				  <option value="1">1</option>
 				  <option value="2">2</option>
 				  <option value="3">3</option>
@@ -78,28 +78,16 @@
 				  <option value="100">100</option>
 				</select>		                    
 	          <label for="inputUrgency" class="field-title">Urgency</label>
-	          	<select name="inputUrgency">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">5</option>
-				  <option value="5">8</option>
-				  <option value="13">13</option>
-				  <option value="21">21</option>
-				  <option value="40">40</option>
-				  <option value="100">100</option>
+	          	<select name="inputUrgency" class="dropdown-text">
+				  <option value="High">High</option>
+				  <option value="Medium">Medium</option>
+				  <option value="Low">Low</option>
 				</select>
 	          <label for="inputImportance" class="field-title">Importance</label>
-	          	<select name="inputImportance">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">5</option>
-				  <option value="5">8</option>
-				  <option value="13">13</option>
-				  <option value="21">21</option>
-				  <option value="40">40</option>
-				  <option value="100">100</option>
+	          	<select name="inputImportance" class="dropdown-text">
+				  <option value="High">High</option>
+				  <option value="Medium">Medium</option>
+				  <option value="Low">Low</option>
 				</select> 	            
 	        </div>
 	        <div id="tertiaryFields">
