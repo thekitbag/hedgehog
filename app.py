@@ -36,6 +36,22 @@ def getTasks():
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
+@app.route('/getInProgress',methods=['POST','GET'])
+def getInProgress():    
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT * FROM Tasks WHERE Status like 'In Progress'")
+    all_rows = c.fetchall()
+    return jsonify(all_rows)
+
+@app.route('/getHardDeadlines',methods=['POST','GET'])
+def getHardDeadlines():    
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT * FROM Tasks WHERE Deadline_Type like 'HARD'")
+    all_rows = c.fetchall()
+    return jsonify(all_rows)
+
 @app.route('/addTask',methods=['POST','GET'])
 def addTask():
     _title = request.form['inputTitle'] 
