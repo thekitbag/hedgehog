@@ -1,17 +1,9 @@
-$(function(){
-	$('#btnHome').click(function(){
-		location.href="showHomePage";		
-	});
-	
+$(function(){	
 	$('#btnGetTasks').click(function() { 
         $.get("/getTasks", function(data){        	
         	$('#tableOfTasks tbody tr').remove();
         	var results = data;  
-        	var resultsLength = data.length;
-        	var newcolHTML = "<th id=" + '\"' + "CTA" + '\">' + "CTA</th>"
-        	if (document.getElementById('CTA') == null) {
-        		var newcol = $('#tableOfTasks thead tr').append(newcolHTML); 
-        	}			
+        	var resultsLength = data.length;			
 			var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0];
 			for (var i = 0; i < resultsLength; i++) {
 					var row = table.insertRow();													
@@ -20,8 +12,8 @@ $(function(){
 						cell1.innerHTML = results[i][j]						
 					};
 					var cell2 = row.insertCell();					
-					var buttonId = '\"' + i + '\"'
-					var buttonClass='\"bggb\"'
+					var buttonId = '\"' + "start" + i + '\"'
+					var buttonClass='\"actionButton\"'
 					var buttonHTML = "<button class=" + buttonClass + " id=" + buttonId + ">Start</button>"					
 					cell2.innerHTML  = buttonHTML
 			};
@@ -42,7 +34,12 @@ $(function(){
 				var cell1 = row.insertCell();					
 				cell1.innerHTML = results[i][j]						
 				};
-			};
+				var cell3 = row.insertCell();					
+				var buttonId = '\"' + "stop" + i + '\"'
+				var buttonClass='\"brsb\"'
+				var buttonHTML = "<button class=" + buttonClass + " id=" + buttonId + ">Stop</button>"					
+				cell3.innerHTML  = buttonHTML
+			};	
         });
     });
 
@@ -60,14 +57,40 @@ $(function(){
 				var cell1 = row.insertCell();					
 				cell1.innerHTML = results[i][j]						
 				};
+				var cell2 = row.insertCell();					
+				var buttonId = '\"' + "start" + i + '\"'
+				var buttonClass='\"actionButton\"'
+				var buttonHTML = "<button class=" + buttonClass + " id=" + buttonId + ">Start</button>"					
+				cell2.innerHTML  = buttonHTML
 			};
         });
     });
+     $(document).on("click",".actionButton",function(){     		
+     		var id = this.id; 
+     		var rowId = id[5];
+     		var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0]
+			var row = table.getElementsByTagName('tr')[rowId]
+			var titleCell = row.getElementsByTagName('td')[0]
+			var title = titleCell.innerHTML
+			var data = {"title":title};
+			$.ajax({
+			    type: 'POST',
+			    contentType: 'application/json',
+			    url: '/startTask',
+			    dataType : 'json',
+			    data : JSON.stringify(data),
+			    success : function(result) {
+			      var resultText = result.text
+			      alert(resultText); 
+			    },error : function(result){
+			       console.log("oops");
+			    }
+		});
+	});
 
-
-
-
-
+    $('#btnHome').click(function(){
+		location.href="showHomePage";		
+	});
 
 	$('#killserver').click(function(){
 		
@@ -83,10 +106,4 @@ $(function(){
 			}
 		});		
 	});
-});
-
-$("button").click(function(){
-    $.get("demo_test.asp", function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
-    });
 });

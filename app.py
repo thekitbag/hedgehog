@@ -74,6 +74,18 @@ def addTask():
     conn.close()
     return json.dumps({'message':'New Task added successfully !'})
 
+@app.route('/startTask',methods=['POST','GET'])
+def startTask():
+        jsonData = request.get_json()
+        taskTitle = jsonData['title']
+
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute("UPDATE Tasks SET Status = 'In Progress' where Title = ?",(taskTitle,))
+        conn.commit()
+        conn.close()
+        return json.dumps({'message':'status updated!'})
+
 #route for shutting down the sserver
 def shutdown_server():
     func = request.environ.get('werkzeug.server.shutdown')
@@ -93,12 +105,4 @@ if __name__ == "__main__":
 
 
 
-"""
-    _complexity = request.form['inputComplexity']
-    _time = request.form['inputTime']
-    _urgency = request.form['inputUrgency']
-    _importance = request.form['inputImportance']
-    _deadline = request.form['inputDeadline']
-    _deadlineType = request.form['deadlineType']
-    _status = "Not Started"
-"""
+

@@ -278,3 +278,11 @@ table {
     margin-left: 45%;
     font-size: 24px;
 }
+
+.brsb {
+    height: 50px;
+    width: 200px;
+    background-color: red;
+    border-radius: 8px;
+    display: inline-block;
+}
