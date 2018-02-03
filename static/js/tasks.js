@@ -81,7 +81,28 @@ $(function(){
 			    data : JSON.stringify(data),
 			    success : function(result) {
 			      var resultText = result.text
-			      alert(resultText); 
+			    },error : function(result){
+			       console.log("oops");
+			    }
+		});
+	});
+
+     $(document).on("click",".brsb",function(){     		
+     		var id = this.id; 
+     		var rowId = id[4];
+     		var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0]
+			var row = table.getElementsByTagName('tr')[rowId]
+			var titleCell = row.getElementsByTagName('td')[0]
+			var title = titleCell.innerHTML
+			var data = {"title":title};
+			$.ajax({
+			    type: 'POST',
+			    contentType: 'application/json',
+			    url: '/stopTask',
+			    dataType : 'json',
+			    data : JSON.stringify(data),
+			    success : function(result) {
+			      var resultText = result.text			       
 			    },error : function(result){
 			       console.log("oops");
 			    }

@@ -86,6 +86,18 @@ def startTask():
         conn.close()
         return json.dumps({'message':'status updated!'})
 
+@app.route('/stopTask',methods=['POST','GET'])
+def stopTask():
+        jsonData = request.get_json()
+        taskTitle = jsonData['title']
+
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute("UPDATE Tasks SET Status = 'Not Started' where Title = ?",(taskTitle,))
+        conn.commit()
+        conn.close()
+        return json.dumps({'message':'status updated!'})
+
 #route for shutting down the sserver
 def shutdown_server():
     func = request.environ.get('werkzeug.server.shutdown')
