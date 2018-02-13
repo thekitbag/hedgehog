@@ -3,7 +3,7 @@ $(function(){
 		location.href="showHomePage";		
 	});
 
-	$('#add-task-button').click(function(){
+	$('#btn-add-task').click(function(){
 		location.href="showAddTask";		
 	});
 
