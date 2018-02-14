@@ -13,20 +13,10 @@ $(function(){
 
 	$('#view-stats-button').click(function(){
 		location.href="showStats";		
-	});
+	});	
 
-	$('#killserver').click(function(){
-		
-		$.ajax({
-			url: '/shutdown',
-			data: $('form').serialize(),
-			type: 'POST',
-			success: function(response){
-				console.log(response)
-			},
-			error: function(error){
-				console.log(error);
-			}
-		});		
+	$('#btn-to-do-today').click(function(){
+		location.href="showToDoToday";		
 	});
+	
 });

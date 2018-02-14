@@ -1,7 +1,4 @@
 $(function(){
-	$('#btnHome').click(function(){
-		location.href="showHomePage";		
-	});
 
 	$('#btnNextFields1').click(function(){
 		$('#primaryFields').hide();
@@ -69,20 +66,5 @@ $(function(){
 		$('#btnNextFields1').hide();
 		$('#btnNextFields2').hide();
 		$('#btnAddTask').show();		
-	});
-
-	$('#killserver').click(function(){
-		
-		$.ajax({
-			url: '/shutdown',
-			data: $('form').serialize(),
-			type: 'POST',
-			success: function(response){
-				console.log(response)
-			},
-			error: function(error){
-				console.log(error);
-			}
-		});		
 	});
 });

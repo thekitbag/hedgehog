@@ -25,7 +25,12 @@ def showStats():
 @app.route('/showAddTask')
 def showAddTask():
     return render_template('addtask.html')
-    
+
+@app.route('/showToDoToday')
+def showToDoToday():
+    return render_template('todotoday.html')
+
+showToDoToday    
 #routes for button actions
 
 @app.route('/getTasks',methods=['POST','GET'])

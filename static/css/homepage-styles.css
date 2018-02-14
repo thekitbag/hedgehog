@@ -1,0 +1,69 @@
+
+.primary-button {
+    height: 40%;
+    width: 80%;
+    background-color: #003300;
+    margin-left: 10%;
+    position: relative;
+    top: 2%;
+    text-align: center;
+}
+
+.primary-button:hover {
+    background-color: #004c00;
+    cursor: pointer;
+}
+
+.secondary-button {
+    height: 20%;
+    width: 80%;
+    background-color: #191970;
+    margin-left: 10%;
+    position: relative;
+    top: 2%;
+    text-align: center;
+}
+
+.secondary-button:hover {
+    background-color: #23297A;
+    cursor: pointer;
+}
+
+.tertiary-buttons {
+    height: 20%;
+    width: 80%;
+    background-color: #839CA5;
+    display: inline-flex;
+    text-align: center;
+    margin-left: 10%;
+}
+
+.tertiary-button {
+    width: 50%;
+    border: 2px solid black;
+}
+
+.tertiary-button:hover {
+    cursor: pointer;
+    background-color:#9bb9c4;
+}  
+
+.button-label {
+    position:relative;    
+    font-weight:700;
+}
+
+#primary-label {
+    font-size: 50px;
+    top: calc(50% - 25px);
+}
+
+#secondary-label {
+    font-size: 32px;
+    top: calc(50% - 16px);
+}
+
+#tertiary-label{
+    font-size: 32px;
+    top: calc(50% - 16px);
+}

@@ -6,15 +6,19 @@
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=11">
     <script src="../static/js/jquery-3.2.1.js"></script>
     <script src="../static/js/addtask.js?version=14"></script>
+    <script src="../static/js/functions.js?version=1"></script>
 </head>
 
 <body>
 	<div class="header">
 		<h1>Hedgehog</h1>
-		<button id="btnHome" class="bggb" type="button">Home</button>
 	</div>
-	<div class="main">
-		<h1>Add a Task!</h1> 
+	<div class="topnav">
+	  <a id="homebtn">Home</a>
+	  <a id="currentTask">Current Task</a>
+	  <a id="profilebtn">Profile</a>
+	</div>
+	<div class="main"> 
 		<form class="form-add-task">
 		  <div id="progressBar">
 		  	<div class="progress-ball" id="ball1">
