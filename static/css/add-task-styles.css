@@ -1,0 +1,122 @@
+
+.full-width-field {
+  width:90%;
+  height:40px;
+  margin:auto;
+  padding-top: 10px;
+  background-color: black;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+label {
+  font-size: 24px;  
+  color:silver;
+  padding:0;
+  position: relative;
+  top: calc(50% - 17px);
+  padding-left: 10px;
+}
+
+.field-input {
+    float: right;
+    width: calc(100% - 160px);
+    position: relative;
+    top: -2px;
+    height: 80%;
+    padding: 0;
+    margin-right: 1%;
+}
+
+#description {
+  height:80px;
+}
+
+.quarter-width-field {
+  display: inline-block;
+  width: calc(95% / 4 - 2%);
+  height: 60px;
+  background-color: black;
+  font-size: 16px;
+}
+
+#difficulty {
+  margin-left: 5%;
+}
+.quarter-width-field label {
+  font-size: 12px;
+  position: static;
+  padding: 0;
+  margin: auto;
+  display: block;
+}
+
+.dropdown {
+  margin-top: 5px;
+  margin-left: 5%;
+  width: 90%;
+  height: 34px;
+}
+
+/*
+.form-add-task {
+    height: 66%;
+    width: 80%;
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-left: 10%;
+    font-size: 26px;
+}
+
+.field-title {
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.field-input {
+    height: 24px;
+    width: 60%;
+    display: block;
+    font-size: 20px;
+    margin-left: 20%;
+    margin-bottom: 5px;
+}
+
+#inputDescription {
+    height: 75px;
+}
+
+
+#btnAddTask {
+    float: right;
+    height:50%;
+    bottom: 50px;
+    display:none;
+}
+
+#inputType {
+    width: 30%;
+    margin-left: 35%;
+}
+
+#inputEpic {
+    width: 30%;
+    margin-left: 35%;
+}
+
+
+
+.dropdown-text, .dropdown-number {
+    margin-left: 45%;
+    font-size: 24px;
+}
+
+.brsb {
+    height: 50px;
+    width: 200px;
+    background-color: red;
+    border-radius: 8px;
+    display: inline-block;
+}
+*/

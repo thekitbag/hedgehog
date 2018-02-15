@@ -4,6 +4,7 @@
 <head>
     <title>Hedgehog</title>    
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=11">
+    <link rel="stylesheet" type="text/css" href="../static/css/add-task-styles.css?version=1">
     <script src="../static/js/jquery-3.2.1.js"></script>
     <script src="../static/js/addtask.js?version=14"></script>
     <script src="../static/js/functions.js?version=1"></script>
@@ -20,25 +21,67 @@
 	</div>
 	<div class="main"> 
 		<form class="form-add-task">
-		  <div id="progressBar">
-		  	<div class="progress-ball" id="ball1">
-		  	</div>
-		  	<div class="progress-line" id="line1">
-		  	</div>
-		  	<div class="progress-ball" id="ball2">
-		  	</div>
-		  	<div class="progress-line" id="line2">
-		  	</div>
-		  	<div class="progress-ball" id="ball3">
-		  	</div>
-		  </div>
-		  <div id="primaryFields">		  	
+			<div class="full-width-field" id="title">
+				<label for="inputTitle" class="field-title">Title</label>
+				<input name="inputTitle" id="inputTitle" class="field-input" required>
+			</div>
+			<div class="full-width-field" id="description">
+				<label for="inputDescription" class="field-title">Description</label>
+	          	<input name="inputDescription" id="inputDescription" class="field-input" required>
+			</div>
+			<div class="quarter-width-field" id="difficulty">
+				<label for="inputComplexity" class="field-title">Complexity</label>
+				<select name="inputComplexity" class="dropdown" id="complexity-dropdown">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">5</option>
+				  <option value="5">8</option>
+				  <option value="13">13</option>
+				  <option value="21">21</option>
+				  <option value="40">40</option>
+				  <option value="100">100</option>
+				</select>
+			</div>
+			<div class="quarter-width-field" id="time">
+				<label for="inputTime" class="field-title">Time</label>
+				<select name="inputTime" class="dropdown">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">5</option>
+				  <option value="5">8</option>
+				  <option value="13">13</option>
+				  <option value="21">21</option>
+				  <option value="40">40</option>
+				  <option value="100">100</option>
+				</select>
+			</div>
+			<div class="quarter-width-field" id="urgency">
+				<label for="inputUrgency" class="field-title">Urgency</label>
+				<select name="inputUrgency" class="dropdown">
+				  <option value="High">High</option>
+				  <option value="Medium">Medium</option>
+				  <option value="Low">Low</option>
+				</select>
+			</div>
+			<div class="quarter-width-field" id="importance">
+				<label for="inputImportance" class="field-title">Importance</label>
+				<select name="inputImportance" class="dropdown">
+				  <option value="High">High</option>
+				  <option value="Medium">Medium</option>
+				  <option value="Low">Low</option>
+				</select>
+			</div>
+
+
+		<!--  <div id="primaryFields">		  	
 	          <label for="inputTitle" class="field-title" id="title-title">Title</label>
 	          <input name="inputTitle" id="inputTitle" class="field-input" required>      
 	          <label for="inputDescription" class="field-title">Description</label>
 	          <input name="inputDescription" id="inputDescription" class="field-input" required>
 	          <label for="inputType" class="field-title">Type</label>
-	          	<select name="inputType" class="dropdown-text">
+	          	<select name="inputType" class=" dropdown">
 	          		<option value="JIRA">JIRA</option>
 	          		<option value="Hipchat">Hipchat</option>
 	          		<option value="Email">Email</option>
@@ -48,7 +91,7 @@
 	          		<option value="Think">Think</option>
 	          	</select>	          		
 	          <label for="inputEpic" class="field-title">Epic</label>
-	          	<select name="inputEpic" class="dropdown-text">
+	          	<select name="inputEpic" class=" dropdown">
 	          		<option value="Poker - General">Poker - General</option>
 	          		<option value="MBOP">MBOP</option>  
 	          		<option value="Multi-player">Multi-player</option>
@@ -58,7 +101,7 @@
 	      </div>
 	      <div id="secondaryFields">
 	          <label for="inputComplexity" class="field-title">Complexity</label>
-	          	<select name="inputComplexity" class="dropdown-number">
+	          	<select name="inputComplexity" class="dropdown">
 				  <option value="1">1</option>
 				  <option value="2">2</option>
 				  <option value="3">3</option>
@@ -70,7 +113,7 @@
 				  <option value="100">100</option>
 				</select>
 	          <label for="inputTime" class="field-title">Time</label>
-	          	<select name="inputTime" class="dropdown-number">
+	          	<select name="inputTime" class="dropdown">
 				  <option value="1">1</option>
 				  <option value="2">2</option>
 				  <option value="3">3</option>
@@ -82,13 +125,13 @@
 				  <option value="100">100</option>
 				</select>		                    
 	          <label for="inputUrgency" class="field-title">Urgency</label>
-	          	<select name="inputUrgency" class="dropdown-text">
+	          	<select name="inputUrgency" class=" dropdown">
 				  <option value="High">High</option>
 				  <option value="Medium">Medium</option>
 				  <option value="Low">Low</option>
 				</select>
 	          <label for="inputImportance" class="field-title">Importance</label>
-	          	<select name="inputImportance" class="dropdown-text">
+	          	<select name="inputImportance" class=" dropdown">
 				  <option value="High">High</option>
 				  <option value="Medium">Medium</option>
 				  <option value="Low">Low</option>
@@ -105,7 +148,7 @@
 	        </div>
 	        <button id="btnNextFields1" class="bggb" type="button">Next</button>
 	        <button id="btnNextFields2" class="bggb" type="button">Next</button>
-	        <button id="btnAddTask" class="bggb" type="button">Add Task</button>
+	        <button id="btnAddTask" class="bggb" type="button">Add Task</button>-->
         </form>        
 	</div>
 	
