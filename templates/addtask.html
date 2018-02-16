@@ -73,15 +73,9 @@
 				  <option value="Low">Low</option>
 				</select>
 			</div>
-
-
-		<!--  <div id="primaryFields">		  	
-	          <label for="inputTitle" class="field-title" id="title-title">Title</label>
-	          <input name="inputTitle" id="inputTitle" class="field-input" required>      
-	          <label for="inputDescription" class="field-title">Description</label>
-	          <input name="inputDescription" id="inputDescription" class="field-input" required>
-	          <label for="inputType" class="field-title">Type</label>
-	          	<select name="inputType" class=" dropdown">
+			<div class="half-width-field" id="taskType">
+				<label for="inputType" class="field-title">Task Type</label>
+				<select name="inputType" class="dropdown">
 	          		<option value="JIRA">JIRA</option>
 	          		<option value="Hipchat">Hipchat</option>
 	          		<option value="Email">Email</option>
@@ -89,63 +83,37 @@
 	          		<option value="Meeting">Meeting</option>
 	          		<option value="Review">Review</option>
 	          		<option value="Think">Think</option>
-	          	</select>	          		
-	          <label for="inputEpic" class="field-title">Epic</label>
-	          	<select name="inputEpic" class=" dropdown">
-	          		<option value="Poker - General">Poker - General</option>
-	          		<option value="MBOP">MBOP</option>  
+	          		<option value="Other">Other</option>
+	          	</select>
+	        </div>
+	        <div class="half-width-field">
+	        	<label for="inputEpic" class="field-title">Epic</label>
+	          	<select name="inputEpic" class="dropdown">
+	          		<option value="Poker">Poker </option>
+	          		<option value="DFG">DFG</option>  
 	          		<option value="Multi-player">Multi-player</option>
 	          		<option value="Personal">Personal</option>
 	          		<option value="Admin">Admin</option>
+	          		<option value="Other">Other</option>
 	            </select>
-	      </div>
-	      <div id="secondaryFields">
-	          <label for="inputComplexity" class="field-title">Complexity</label>
-	          	<select name="inputComplexity" class="dropdown">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">5</option>
-				  <option value="5">8</option>
-				  <option value="13">13</option>
-				  <option value="21">21</option>
-				  <option value="40">40</option>
-				  <option value="100">100</option>
-				</select>
-	          <label for="inputTime" class="field-title">Time</label>
-	          	<select name="inputTime" class="dropdown">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">5</option>
-				  <option value="5">8</option>
-				  <option value="13">13</option>
-				  <option value="21">21</option>
-				  <option value="40">40</option>
-				  <option value="100">100</option>
-				</select>		                    
-	          <label for="inputUrgency" class="field-title">Urgency</label>
-	          	<select name="inputUrgency" class=" dropdown">
-				  <option value="High">High</option>
-				  <option value="Medium">Medium</option>
-				  <option value="Low">Low</option>
-				</select>
-	          <label for="inputImportance" class="field-title">Importance</label>
-	          	<select name="inputImportance" class=" dropdown">
-				  <option value="High">High</option>
-				  <option value="Medium">Medium</option>
-				  <option value="Low">Low</option>
-				</select> 	            
 	        </div>
-	        <div id="tertiaryFields">
-	          <label for="inputDeadline" class="field-title">Deadline</label>
-	          <input type="date" name="inputDeadline" id="inputDeadline" class="field-date" required>
-	          <label for="deadlineType" class="field-title">Deadline Type</label>
-	          	<select name="deadlineType">
+	        <div class="half-width-field" id="deadline">
+	        	<label for="inputDeadline" class="field-title">Deadline</label>
+	          	<input type="date" name="inputDeadline" id="inputDeadline" class="dropdown" required>
+	        </div>
+	        <div class="half-width-field" id="deadlineType">
+	        	<label for="deadlineType" class="field-title">Deadline Type</label>
+	        	<select name="deadlineType" class="dropdown">
 				  <option value="HARD">HARD</option>
 				  <option value="SOFT">SOFT</option>
-				</select>             
+				</select> 	          	
 	        </div>
+	        <button id="btnAddTask" class="bggb" type="button">Add Task</button>
+
+
+		<!--  <div id="primaryFields">		  	
+	          
+	     
 	        <button id="btnNextFields1" class="bggb" type="button">Next</button>
 	        <button id="btnNextFields2" class="bggb" type="button">Next</button>
 	        <button id="btnAddTask" class="bggb" type="button">Add Task</button>-->

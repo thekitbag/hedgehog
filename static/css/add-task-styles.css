@@ -1,4 +1,7 @@
-
+form {
+  position: relative;
+  top:5px;
+}
 .full-width-field {
   width:90%;
   height:40px;
@@ -34,7 +37,7 @@ label {
 
 .quarter-width-field {
   display: inline-block;
-  width: calc(95% / 4 - 2%);
+  width: calc((90% - 13px) / 4);
   height: 60px;
   background-color: black;
   font-size: 16px;
@@ -43,6 +46,7 @@ label {
 #difficulty {
   margin-left: 5%;
 }
+
 .quarter-width-field label {
   font-size: 12px;
   position: static;
@@ -58,65 +62,40 @@ label {
   height: 34px;
 }
 
-/*
-.form-add-task {
-    height: 66%;
-    width: 80%;
-    border: 1px solid black;
-    border-collapse: collapse;
-    margin-left: 10%;
-    font-size: 26px;
+.half-width-field {
+  display: inline-block;
+  width: calc((90% - 4px) / 2);
+  height: 65px;
+  background-color: black;
+  font-size: 16px;
 }
 
-.field-title {
-    width: 100%;
-    display: block;
-    text-align: center;
+.half-width-field label {
+  font-size: 14px;
+  position: static;
+  padding: 0;
+  margin: auto;
+  display: block;
 }
 
-.field-input {
-    height: 24px;
-    width: 60%;
-    display: block;
-    font-size: 20px;
-    margin-left: 20%;
-    margin-bottom: 5px;
+#taskType {
+  margin-left: 5%;
+  margin-top: 5px;
 }
 
-#inputDescription {
-    height: 75px;
+#deadline {
+  margin-left: 5%;
+  margin-top: 5px;
 }
 
+#deadlineType {
+  position: relative;
+  top: -2px;
+}
 
 #btnAddTask {
-    float: right;
-    height:50%;
-    bottom: 50px;
-    display:none;
+  margin-left:5%;
+  margin-top: 5px;
+  width: 90%;
+
 }
-
-#inputType {
-    width: 30%;
-    margin-left: 35%;
-}
-
-#inputEpic {
-    width: 30%;
-    margin-left: 35%;
-}
-
-
-
-.dropdown-text, .dropdown-number {
-    margin-left: 45%;
-    font-size: 24px;
-}
-
-.brsb {
-    height: 50px;
-    width: 200px;
-    background-color: red;
-    border-radius: 8px;
-    display: inline-block;
-}
-*/
