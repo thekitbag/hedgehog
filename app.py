@@ -57,6 +57,14 @@ def getHardDeadlines():
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
+@app.route('/getToDoToday',methods=['POST','GET'])
+def getToDoToday():    
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT * FROM Tasks WHERE Status like 'To Do Today'")
+    all_rows = c.fetchall()
+    return jsonify(all_rows)
+
 @app.route('/addTask',methods=['POST','GET'])
 def addTask():
     _title = request.form['inputTitle'] 
@@ -90,6 +98,20 @@ def startTask():
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
+
+@app.route('/addToToday',methods=['POST','GET'])
+def addToToday():
+        jsonData = request.get_json()
+        taskTitle = jsonData['title']
+
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute("UPDATE Tasks SET Status = 'To Do Today' where Title = ?",(taskTitle,))
+        conn.commit()
+        conn.close()
+        return json.dumps({'message':'status updated!'})
+
+
 
 @app.route('/stopTask',methods=['POST','GET'])
 def stopTask():
