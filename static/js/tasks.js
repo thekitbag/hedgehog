@@ -36,10 +36,12 @@ $(function(){
 				var cell1 = row.insertCell();					
 				cell1.innerHTML = results[i][j]						
 				};
-				var cell3 = row.insertCell();					
+				var cell3 = row.insertCell();
+				var doneBtnClass = '\"doneBtn\"'
+				var doneBtnId = '\"' + "done" + i + '\"'				
 				var buttonId = '\"' + "stop" + i + '\"'
 				var buttonClass='\"brsb\"'
-				var buttonHTML = "<button class=" + buttonClass + " id=" + buttonId + ">Stop</button>"					
+				var buttonHTML = "<button class=" + buttonClass + " id=" + buttonId + ">Stop</button><button class=" + doneBtnClass + " id=" + doneBtnId + ">Done</button>"					
 				cell3.innerHTML  = buttonHTML
 			};	
         });
@@ -91,6 +93,29 @@ $(function(){
         });
     });
 
+    $('#btnGetDone').click(function() { 
+        $.get("/getDone", function(data){
+        	console.log(data);
+        	$('#tableOfTasks tbody tr').remove();
+        	$('#tableOfTasks').find('#CTA').remove();
+        	var results = data;
+			var resultsLength = data.length;			
+			var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0];
+			for (var i = 0; i < resultsLength; i++) {				
+				var row = table.insertRow();							
+				for (var j = 1; j < 12; j++){					
+				var cell1 = row.insertCell();					
+				cell1.innerHTML = results[i][j]						
+				};
+				var cell2 = row.insertCell();					
+				var buttonId = '\"' + "reopen" + i + '\"'
+				var buttonClass='\"btnReopen\"'
+				var buttonHTML = "<button class=" + buttonClass + " id=" + buttonId + ">Re-open</button>"					
+				cell2.innerHTML  = buttonHTML
+			};
+        });
+    });
+
 
      $(document).on("click",".actionButton",function(){     		
      		var id = this.id; 
@@ -136,6 +161,28 @@ $(function(){
 		});
 	}); 
 
+     $(document).on("click",".doneBtn",function(){     		
+     		var id = this.id; 
+     		var rowId = id[4];
+     		var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0]
+			var row = table.getElementsByTagName('tr')[rowId]
+			var titleCell = row.getElementsByTagName('td')[0]
+			var title = titleCell.innerHTML
+			var data = {"title":title};
+			$.ajax({
+			    type: 'POST',
+			    contentType: 'application/json',
+			    url: '/finishTask',
+			    dataType : 'json',
+			    data : JSON.stringify(data),
+			    success : function(result) {
+			      var resultText = result.text			       
+			    },error : function(result){
+			       console.log("oops");
+			    }
+		});
+	});
+
      $(document).on("click",".brsb",function(){     		
      		var id = this.id; 
      		var rowId = id[4];
@@ -148,6 +195,28 @@ $(function(){
 			    type: 'POST',
 			    contentType: 'application/json',
 			    url: '/stopTask',
+			    dataType : 'json',
+			    data : JSON.stringify(data),
+			    success : function(result) {
+			      var resultText = result.text			       
+			    },error : function(result){
+			       console.log("oops");
+			    }
+		});
+	});
+
+     $(document).on("click",".btnReopen",function(){     		
+     		var id = this.id; 
+     		var rowId = id[6];
+     		var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0]
+			var row = table.getElementsByTagName('tr')[rowId]
+			var titleCell = row.getElementsByTagName('td')[0]
+			var title = titleCell.innerHTML
+			var data = {"title":title};
+			$.ajax({
+			    type: 'POST',
+			    contentType: 'application/json',
+			    url: '/reopenTask',
 			    dataType : 'json',
 			    data : JSON.stringify(data),
 			    success : function(result) {

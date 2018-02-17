@@ -65,6 +65,14 @@ def getToDoToday():
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
+@app.route('/getDone',methods=['POST','GET'])
+def getDone():    
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT * FROM Tasks WHERE Status like 'Done'")
+    all_rows = c.fetchall()
+    return jsonify(all_rows)
+
 @app.route('/addTask',methods=['POST','GET'])
 def addTask():
     _title = request.form['inputTitle'] 
@@ -121,6 +129,30 @@ def stopTask():
         conn = sqlite3.connect(db)
         c = conn.cursor()
         c.execute("UPDATE Tasks SET Status = 'Not Started' where Title = ?",(taskTitle,))
+        conn.commit()
+        conn.close()
+        return json.dumps({'message':'status updated!'})
+
+@app.route('/finishTask',methods=['POST','GET'])
+def finishTask():
+        jsonData = request.get_json()
+        taskTitle = jsonData['title']
+
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute("UPDATE Tasks SET Status = 'Done' where Title = ?",(taskTitle,))
+        conn.commit()
+        conn.close()
+        return json.dumps({'message':'status updated!'})
+
+@app.route('/reopenTask',methods=['POST','GET'])
+def reopenTask():
+        jsonData = request.get_json()
+        taskTitle = jsonData['title']
+
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute("UPDATE Tasks SET Status = 'In Progress' where Title = ?",(taskTitle,))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
