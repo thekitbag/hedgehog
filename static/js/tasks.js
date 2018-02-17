@@ -6,11 +6,9 @@ $(function(){
         	var resultsLength = data.length;			
 			var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0];
 			for (var i = 0; i < resultsLength; i++) {
-					var row = table.insertRow();													
-						for (var j = 1; j < 12; j++){					
-						var cell1 = row.insertCell();					
-						cell1.innerHTML = results[i][j]						
-					};
+					var row = table.insertRow();				
+					var cell1 = row.insertCell();					
+					cell1.innerHTML = results[i]
 					var cell2 = row.insertCell();	
 					var attButtonClass='\"attbtn\"'				
 					var startButtonId = '\"' + "start" + i + '\"'
@@ -31,11 +29,9 @@ $(function(){
 			var resultsLength = data.length;
 			var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0];
 			for (var i = 0; i < resultsLength; i++) {				
-				var row = table.insertRow();							
-				for (var j = 1; j < 12; j++){					
+				var row = table.insertRow();
 				var cell1 = row.insertCell();					
-				cell1.innerHTML = results[i][j]						
-				};
+				cell1.innerHTML = results[i]							
 				var cell3 = row.insertCell();
 				var doneBtnClass = '\"doneBtn\"'
 				var doneBtnId = '\"' + "done" + i + '\"'				
@@ -57,10 +53,8 @@ $(function(){
 			var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0];
 			for (var i = 0; i < resultsLength; i++) {				
 				var row = table.insertRow();							
-				for (var j = 1; j < 12; j++){					
 				var cell1 = row.insertCell();					
-				cell1.innerHTML = results[i][j]						
-				};
+				cell1.innerHTML = results[i]
 				var cell2 = row.insertCell();					
 				var buttonId = '\"' + "start" + i + '\"'
 				var buttonClass='\"actionButton\"'
@@ -79,11 +73,9 @@ $(function(){
 			var resultsLength = data.length;			
 			var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0];
 			for (var i = 0; i < resultsLength; i++) {				
-				var row = table.insertRow();							
-				for (var j = 1; j < 12; j++){					
+				var row = table.insertRow();
 				var cell1 = row.insertCell();					
-				cell1.innerHTML = results[i][j]						
-				};
+				cell1.innerHTML = results[i]
 				var cell2 = row.insertCell();					
 				var buttonId = '\"' + "start" + i + '\"'
 				var buttonClass='\"actionButton\"'
@@ -102,11 +94,9 @@ $(function(){
 			var resultsLength = data.length;			
 			var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0];
 			for (var i = 0; i < resultsLength; i++) {				
-				var row = table.insertRow();							
-				for (var j = 1; j < 12; j++){					
+				var row = table.insertRow();
 				var cell1 = row.insertCell();					
-				cell1.innerHTML = results[i][j]						
-				};
+				cell1.innerHTML = results[i]
 				var cell2 = row.insertCell();					
 				var buttonId = '\"' + "reopen" + i + '\"'
 				var buttonClass='\"btnReopen\"'
