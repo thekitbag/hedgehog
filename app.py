@@ -37,7 +37,7 @@ showToDoToday
 def getTasks():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title FROM Tasks WHERE Status like 'Not Started'")
+    c.execute("SELECT Title, Complexity FROM Tasks WHERE Status like 'Not Started'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 

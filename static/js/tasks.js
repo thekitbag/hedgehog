@@ -1,24 +1,70 @@
-$(function(){	
-	$('#btnGetTasks').click(function() { 
-        $.get("/getTasks", function(data){        	
-        	$('#tableOfTasks tbody tr').remove();
+$( document ).ready(function() {
+    $.get("/getTasks", function(data){
         	var results = data;  
-        	var resultsLength = data.length;			
+        	var resultsLength = data.length;
+        	for (var i = 0; i < resultsLength; i++) {
+					var task = document.createElement("div");
+					task.style.width = "100px";
+					task.style.height = "100px";
+					if (results[i][1] == 1) {
+						task.style.background = "red";
+					} else {
+						task.style.background = "blue";
+					}
+					
+					task.style.color = "white";
+					task.innerHTML = results[i][0];
+					document.getElementById("tasksContainer").appendChild(task);
+				};
+			});
+
+	$.get("/getInProgress", function(data){
+	        	var results = data;
+				var resultsLength = data.length;
+				for (var i = 0; i < resultsLength; i++) {
+					var task = document.createElement("div");
+					task.style.width = "100px";
+					task.style.height = "100px";
+					if (results[i][1] == 1) {
+						task.style.background = "red";
+					} else {
+						task.style.background = "blue";
+					}
+					
+					task.style.color = "white";
+					task.innerHTML = results[i][0];
+					document.getElementById("inProgressTasksContainer").appendChild(task);
+				};	
+	        });
+		});
+
+/*
+    $.get("/getInProgress", function(data){
+        	console.log(data);
+        	$('#tableOfTasks tbody tr').remove();
+        	$('#tableOfTasks').find('#CTA').remove();
+        	var results = data;
+			var resultsLength = data.length;
 			var table = document.getElementById('tableOfTasks').getElementsByTagName('tbody')[0];
-			for (var i = 0; i < resultsLength; i++) {
-					var row = table.insertRow();				
-					var cell1 = row.insertCell();					
-					cell1.innerHTML = results[i]
-					var cell2 = row.insertCell();	
-					var attButtonClass='\"attbtn\"'				
-					var startButtonId = '\"' + "start" + i + '\"'
-					var addToTodayButtonId = '\"' + "att" + i + '\"'
-					var buttonClass='\"actionButton\"'
-					var buttonHTML = "<button class=" + buttonClass + " id=" + startButtonId + ">Start</button><button class=" + attButtonClass + " id=" + addToTodayButtonId + ">Add to Today's Tasks</button>"					
-					cell2.innerHTML  = buttonHTML
-			};
+			for (var i = 0; i < resultsLength; i++) {				
+				var row = table.insertRow();
+				var cell1 = row.insertCell();					
+				cell1.innerHTML = results[i]							
+				var cell3 = row.insertCell();
+				var doneBtnClass = '\"doneBtn\"'
+				var doneBtnId = '\"' + "done" + i + '\"'				
+				var buttonId = '\"' + "stop" + i + '\"'
+				var buttonClass='\"brsb\"'
+				var buttonHTML = "<button class=" + buttonClass + " id=" + buttonId + ">Stop</button><button class=" + doneBtnClass + " id=" + doneBtnId + ">Done</button>"					
+				cell3.innerHTML  = buttonHTML
+			};	
         });
-    });
+
+
+
+
+
+
     
     $('#btnGetInProgress').click(function() { 
         $.get("/getInProgress", function(data){

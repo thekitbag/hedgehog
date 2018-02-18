@@ -4,9 +4,9 @@
 <head>
     <title>Hedgehog</title>    
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=13">
-    <link rel="stylesheet" type="text/css" href="../static/css/tasks-styles.css?version=15">
+    <link rel="stylesheet" type="text/css" href="../static/css/tasks-styles.css?version=18">
     <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/tasks.js?version=34"></script>
+    <script src="../static/js/tasks.js?version=44"></script>
     <script src="../static/js/functions.js?version=1"></script>
 </head>
 <body>
@@ -22,10 +22,7 @@
     <div class="action-buttons">  
       <div class="bggb" id="btnGetInProgress">
         <p>In Progress</p>
-      </div>              
-      <div class="bggb" id="btnGetTasks">
-        <p>Get All Tasks</p>
-      </div>
+      </div> 
       <div class="bggb" id="btnGetHardDeadlines">
         <p>Hard Deadlines</p>
       </div>
@@ -36,30 +33,16 @@
         <p>Done</p>
       </div>
     </div>
-		<table id="tableOfTasks">
-          <thead>
-            <tr>                
-                <th>Task</th>
-                <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>                
-              </tr>
-          </tbody>          
-    </table>
-    <table id="tblTodaysTasks">
-          <thead>
-            <tr>                
-                <th>Task</th>
-                <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>                
-              </tr>
-          </tbody>          
-    </table>  
+    <div class="container" id="inProgressTasksContainer">
+      <h1>In Progress Tasks</h1>
+    </div>
+    <div class="container"  id="todaysTasksContainer">
+      <h1>Today's Taks</h1>
+    </div>
+    <div class="container"  id="tasksContainer">
+      <h1>Tasks</h1>
+    </div>
+
 	</div>	
 	<div class ="footer">
 		<button id="killserver" class="bggb" type="button">killserver</button>
