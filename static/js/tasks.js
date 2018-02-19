@@ -1,3 +1,11 @@
+function setClass(task){
+	if (task == "High") {
+		task.setAttribute("class", "task-I")
+		} else {
+		task.setAttribute("class", "task-nI")
+		};
+}
+
 function populateList(endpoint) {
   $.get(endpoint, function(data) {
   	var results = data;  
@@ -7,8 +15,18 @@ function populateList(endpoint) {
     var todaysTaskList = "todaysTasksContainer";
     for (var i = 0; i < resultsLength; i++) {			
 			var task = document.createElement("div");
-			var taskId = "task" + i
-			task.setAttribute("class", "task-nInU")
+			if (results[i][1] == "High" && results[i][2] == "High") {
+				task.setAttribute("class", "task IU")
+				} else if (results[i][1] == "Low" && results[i][2] == "Low"){
+				task.setAttribute("class", "task nInU")
+				} else if (results[i][1] == "Low" && results[i][2] == "High"){
+				task.setAttribute("class", "task InU")
+				} else if (results[i][1] == "High" && results[i][2] == "Low"){
+				task.setAttribute("class", "task nIU")
+				} else {
+				task.setAttribute("class", "task other")
+			};
+			var taskId = "task" + i			
 			task.setAttribute("id", taskId);
 			task.innerHTML = results[i][0];
 			if (endpoint == "/getTasks") {
