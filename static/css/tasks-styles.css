@@ -1,5 +1,5 @@
 .main {
-	background-color: #456a32
+	background-color: #456a32;
 	height:100%;
 }
 .container {
@@ -7,44 +7,51 @@
 }
 
 .task {
-	border-radius: 10px;
+    border-radius: 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    padding-top: 30px;
+    width:25%;
+ 	height:50px;
 }
 
 .IU {
-  width:25%;
-  height:50px;
   background-color: red;
 }
 
 .InU {
-  width:25%;
-  height:50px;
   background-color: yellow;
 }
 
 .nIU {
-  width:25%;
-  height:50px;
   background-color: orange;
 }
 
 .nInU {
-  width:25%;
-  height:50px;
   background-color: green;
 }
 
-
-
-.task-other {
-  width:25%;
-  height:50px;
-  background-color: grey;
+.other {
+	background-color: grey;
 }
 
-.startBtn {
-  height:25px;
-  width:75px;
-  background-color: green;
+.btn {
+	height: 80px;
+	width: 75px;
+	border-radius: 10px;
+	margin-right: 10px;
+	margin-bottom: 5px;
 }
+
+.start {
+	background-color: green;
+}
+
+.pause {
+	background-color: orange;
+}
+
+
+
 
