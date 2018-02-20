@@ -62,11 +62,19 @@ function populateList(endpoint) {
 	});
 }
 
-$( document ).ready(function() {
+$(document).ready(function() {
 	populateList("/getTasks");
 	populateList("/getInProgress");    
 	populateList("/getToDoToday");
 });
+
+function refreshList(list, endpoint) {
+	var listToRefresh = document.getElementById(list)
+	while (listToRefresh.childNodes.length > 2) {
+		listToRefresh.removeChild(listToRefresh.lastChild);
+	}
+	populateList(endpoint); 
+}
 
 $(document).on("click",".start",function(){     		
      		var id = this.id; 
@@ -86,16 +94,48 @@ $(document).on("click",".start",function(){
 			    dataType : 'json',
 			    data : JSON.stringify(data),
 			    success : function(result) {
-			      populateList("/getInProgress");
+			      refreshList("inProgressTasksContainer", "/getInProgress");
+			      refreshList("todaysTasksContainer", "/getToDoToday");
+			      refreshList("tasksContainer", "/getTasks");
 			    },error : function(result){
 			       console.log("oops");
 			    }
-		});
-     		
-			/*var row = table.getElementsByTagName('tr')[rowId]
-			var titleCell = row.getElementsByTagName('td')[0]
-			var title = titleCell.innerHTML
-			var data = {"title":title};
+		});	
+	});
+
+$(document).on("click",".pause",function(){     		
+     		var id = this.id;
+     		console.log(id); 
+     		var index = id[5];
+     		console.log(index);      		
+     		var taskId = "btask" + index;
+     		console.log(taskId);     		    		
+     		var taskTitlehtml = document.getElementById(taskId);
+     		console.log(taskTitlehtml); 
+     		var taskTitle = taskTitlehtml.innerHTML;
+     		var data = {"title":taskTitle};
+			$.ajax({
+			    type: 'POST',
+			    contentType: 'application/json',
+			    url: '/stopTask',
+			    dataType : 'json',
+			    data : JSON.stringify(data),
+			    success : function(result) {
+			      refreshList("tasksContainer", "/getTasks");
+			      refreshList("inProgressTasksContainer", "/getInProgress");
+			    },error : function(result){
+			       console.log("oops");
+			    }
+		});	
+	}); 
+
+$(document).on("click",".att",function(){     		
+     		var id = this.id; 
+     		var index = id[6];
+     		var taskId = "atask" + index;     		    		
+     		var taskTitlehtml = document.getElementById(taskId);
+     		var taskTitle = taskTitlehtml.innerHTML;
+     		var data = {"title":taskTitle};
 			$.ajax({
 			    type: 'POST',
 			    contentType: 'application/json',
@@ -103,11 +143,12 @@ $(document).on("click",".start",function(){
 			    dataType : 'json',
 			    data : JSON.stringify(data),
 			    success : function(result) {
-			      var resultText = result.text
+			      refreshList("todaysTasksContainer", "/getToDoToday");
+			      refreshList("tasksContainer", "/getTasks");			      
 			    },error : function(result){
 			       console.log("oops");
 			    }
-		}); */
+		});	
 	}); 
 
 
