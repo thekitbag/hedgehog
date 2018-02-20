@@ -37,7 +37,7 @@ showToDoToday
 def getTasks():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Complexity FROM Tasks WHERE Status like 'Not Started'")
+    c.execute("SELECT Title, Urgency, Importance FROM Tasks WHERE Status like 'Not Started'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -45,7 +45,7 @@ def getTasks():
 def getInProgress():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title FROM Tasks WHERE Status like 'In Progress'")
+    c.execute("SELECT Title, Urgency, Importance FROM Tasks WHERE Status like 'In Progress'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -61,7 +61,7 @@ def getHardDeadlines():
 def getToDoToday():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title FROM Tasks WHERE Status like 'To Do Today'")
+    c.execute("SELECT Title, Importance, Urgency FROM Tasks WHERE Status like 'To Do Today'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
