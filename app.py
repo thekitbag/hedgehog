@@ -61,7 +61,7 @@ def getHardDeadlines():
 def getToDoToday():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Importance, Urgency FROM Tasks WHERE Status like 'To Do Today'")
+    c.execute("SELECT Title, Urgency, Importance FROM Tasks WHERE Status like 'To Do Today'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 

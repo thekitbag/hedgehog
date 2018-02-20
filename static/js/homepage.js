@@ -15,8 +15,5 @@ $(function(){
 		location.href="showStats";		
 	});	
 
-	$('#btn-to-do-today').click(function(){
-		location.href="showToDoToday";		
-	});
 	
 });

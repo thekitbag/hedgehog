@@ -29,6 +29,11 @@ label {
     height: 80%;
     padding: 0;
     margin-right: 1%;
+    font-size: 28px;
+}
+
+#inputDescription {
+  font-size: 16px;
 }
 
 #description {

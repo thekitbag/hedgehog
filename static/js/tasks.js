@@ -7,7 +7,11 @@ function populateList(endpoint) {
     var allTasksList = "tasksContainer";
     var inProgressList = "inProgressTasksContainer";
     var todaysTaskList = "todaysTasksContainer";
-    for (var i = 0; i < resultsLength; i++) {			
+    for (var i = 0; i < resultsLength; i++) {
+    		var taskBox = document.createElement("div");
+    		taskBox.setAttribute("class", "task-box")
+    		var boxId = "taskbox" + i
+    		taskBox.setAttribute("id", boxId)			
 			var task = document.createElement("div");
 			if (results[i][1] == "High" && results[i][2] == "High") {
 				task.setAttribute("class", "task IU")
@@ -33,10 +37,11 @@ function populateList(endpoint) {
 				var attBtnId = "attBtn" + i
 				attBtn.setAttribute("class", "btn att")
 				attBtn.setAttribute("id", attBtnId);
-				attBtn.innerHTML = "Add to Today"					
-				document.getElementById(allTasksList).appendChild(task);
-				document.getElementById(allTasksList).appendChild(startBtn);
-				document.getElementById(allTasksList).appendChild(attBtn);
+				attBtn.innerHTML = "Add to Today"
+				document.getElementById(allTasksList).appendChild(taskBox);					
+				document.getElementById(boxId).appendChild(task);
+				document.getElementById(boxId).appendChild(startBtn);
+				document.getElementById(boxId).appendChild(attBtn);
 			} else if (endpoint == "/getInProgress") {
 				var taskId = "btask" + i			
 				task.setAttribute("id", taskId);
@@ -44,9 +49,10 @@ function populateList(endpoint) {
 				var pauseId = "pause" + i
 				pauseBtn.setAttribute("class", "btn pause")
 				pauseBtn.setAttribute("id", pauseId);
-				pauseBtn.innerHTML = "Pause"					
-				document.getElementById(inProgressList).appendChild(task);
-				document.getElementById(inProgressList).appendChild(pauseBtn);
+				pauseBtn.innerHTML = "Pause"		
+				document.getElementById(inProgressList).appendChild(taskBox);				
+				document.getElementById(taskBox).appendChild(task);
+				document.getElementById(taskBox).appendChild(pauseBtn);
 			} 	else if (endpoint == "/getToDoToday") {
 				var taskId = "ctask" + i			
 				task.setAttribute("id", taskId);
@@ -54,9 +60,10 @@ function populateList(endpoint) {
 				var startId = "cstart" + i
 				startBtn.setAttribute("class", "btn start")
 				startBtn.setAttribute("id", startId);
-				startBtn.innerHTML = "Start"					
-				document.getElementById(todaysTaskList).appendChild(task);
-				document.getElementById(todaysTaskList).appendChild(startBtn);		
+				startBtn.innerHTML = "Start"	
+				document.getElementById(todaysTaskList).appendChild(taskBox);					
+				document.getElementById(taskBox).appendChild(task);
+				document.getElementById(taskBox).appendChild(startBtn);		
 			};
 		};
 	});

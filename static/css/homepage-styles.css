@@ -1,6 +1,6 @@
 
 .primary-button {
-    height: 40%;
+    height: 66%;
     width: 80%;
     background-color: #003300;
     margin-left: 10%;
@@ -12,22 +12,6 @@
 
 .primary-button:hover {
     background-color: #004d00;
-    cursor: pointer;
-}
-
-.secondary-button {
-    height: 20%;
-    width: 80%;
-    background-color: #00004d;
-    margin-left: 10%;
-    position: relative;
-    top: 2%;
-    text-align: center;
-    color: silver;
-}
-
-.secondary-button:hover {
-    background-color: #0000b3;
     cursor: pointer;
 }
 
