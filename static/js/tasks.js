@@ -1,29 +1,76 @@
+//functions
+
+function setClass(entry, task) {	
+	if (entry[1] == "High" && entry[2] == "High") {
+		task.setAttribute("class", "task IU");
+		} else if (entry[1] == "Low" && entry[2] == "Low"){
+		task.setAttribute("class", "task nInU");
+		} else if (entry[1] == "Low" && entry[2] == "High"){
+		task.setAttribute("class", "task InU");
+		} else if (entry[1] == "High" && entry[2] == "Low"){
+		task.setAttribute("class", "task nIU");
+		} else {
+		task.setAttribute("class", "task other");
+	}				
+}
+
+function createTaskShell(shellClass, id, destination) {
+	var createShell = document.createElement("div");	
+	createShell.setAttribute("class", shellClass);
+	createShell.setAttribute("id", id);
+	document.getElementById(destination).appendChild(createShell);
+}
+
+function createTaskContent(taskClass, id, destination, title) {
+	var createContent = document.createElement("div");	
+	createContent.setAttribute("class", taskClass);
+	createContent.setAttribute("id", id);
+	document.getElementById(destination).appendChild(createContent);
+	createContent.innerHTML = title;
+}
+
+function createButton(btnclass, id, destination) {
+	var createButton = document.createElement("button");	
+	createButton.setAttribute("class", btnclass);
+	createButton.setAttribute("id", id);
+	document.getElementById(destination).appendChild(createButton);
+}
+
+function populateList(endpoint, container) {
+	$.get(endpoint, function(data) {
+		var results = data;
+  		var resultsLength = results.length
+ 		for (var i = 0; i < resultsLength; i++) {
+ 			createTaskShell("task-box", "a"+i, container);
+ 			createTaskContent("task", "b"+i, "a"+i, results[i][0])
+ 		}
+ 	});
+ }
 
 
+ //execute
+$(document).ready(function() {
+	populateList("/getToDoToday", "todaysTasksContainer");	
+});
+
+
+
+	
+/*	
 function populateList(endpoint) {
   $.get(endpoint, function(data) {
-  	var results = data;  
-    var resultsLength = data.length;
+  	var results = data;
+  	var resultsLength = results.length  
     var allTasksList = "tasksContainer";
     var inProgressList = "inProgressTasksContainer";
-    var todaysTaskList = "todaysTasksContainer";
+    var todaysTaskList = "todaysTasksContainer";   
     for (var i = 0; i < resultsLength; i++) {
     		var taskBox = document.createElement("div");
-    		taskBox.setAttribute("class", "task-box")
-    		var boxId = "taskbox" + i
-    		taskBox.setAttribute("id", boxId)			
 			var task = document.createElement("div");
-			if (results[i][1] == "High" && results[i][2] == "High") {
-				task.setAttribute("class", "task IU")
-				} else if (results[i][1] == "Low" && results[i][2] == "Low"){
-				task.setAttribute("class", "task nInU")
-				} else if (results[i][1] == "Low" && results[i][2] == "High"){
-				task.setAttribute("class", "task InU")
-				} else if (results[i][1] == "High" && results[i][2] == "Low"){
-				task.setAttribute("class", "task nIU")
-				} else {
-				task.setAttribute("class", "task other")
-			};			
+			var boxId = "taskbox" + i			
+			taskBox.setAttribute("class", "task-box")			
+			taskBox.setAttribute("id", boxId)	    		
+			setClass(results[i], task);			
 			task.innerHTML = results[i][0];
 			if (endpoint == "/getTasks") {
 				var taskId = "atask" + i			
@@ -38,6 +85,7 @@ function populateList(endpoint) {
 				attBtn.setAttribute("class", "btn att")
 				attBtn.setAttribute("id", attBtnId);
 				attBtn.innerHTML = "Add to Today"
+				boxId = "taskbox" + i								
 				document.getElementById(allTasksList).appendChild(taskBox);					
 				document.getElementById(boxId).appendChild(task);
 				document.getElementById(boxId).appendChild(startBtn);
@@ -51,8 +99,8 @@ function populateList(endpoint) {
 				pauseBtn.setAttribute("id", pauseId);
 				pauseBtn.innerHTML = "Pause"		
 				document.getElementById(inProgressList).appendChild(taskBox);				
-				document.getElementById(taskBox).appendChild(task);
-				document.getElementById(taskBox).appendChild(pauseBtn);
+				document.getElementById(boxId).appendChild(task);
+				document.getElementById(boxId).appendChild(pauseBtn);
 			} 	else if (endpoint == "/getToDoToday") {
 				var taskId = "ctask" + i			
 				task.setAttribute("id", taskId);
@@ -62,18 +110,12 @@ function populateList(endpoint) {
 				startBtn.setAttribute("id", startId);
 				startBtn.innerHTML = "Start"	
 				document.getElementById(todaysTaskList).appendChild(taskBox);					
-				document.getElementById(taskBox).appendChild(task);
-				document.getElementById(taskBox).appendChild(startBtn);		
+				document.getElementById(boxId).appendChild(task);
+				document.getElementById(boxId).appendChild(startBtn);		
 			};
 		};
 	});
 }
-
-$(document).ready(function() {
-	populateList("/getTasks");
-	populateList("/getInProgress");    
-	populateList("/getToDoToday");
-});
 
 function refreshList(list, endpoint) {
 	var listToRefresh = document.getElementById(list)
@@ -82,6 +124,17 @@ function refreshList(list, endpoint) {
 	}
 	populateList(endpoint); 
 }
+
+//functions executed when the page loads
+
+$(document).ready(function() {
+	populateList("/getTasks");
+	populateList("/getInProgress");    
+	populateList("/getToDoToday");
+});
+
+
+//functions excute on use rinteractiobs
 
 $(document).on("click",".start",function(){     		
      		var id = this.id; 
@@ -159,4 +212,4 @@ $(document).on("click",".att",function(){
 	}); 
 
 
-			
+*/			
