@@ -1,16 +1,16 @@
 //functions
 
-function setClass(entry, task) {	
+function setClass(entry, id) {	
 	if (entry[1] == "High" && entry[2] == "High") {
-		task.setAttribute("class", "task IU");
+		document.getElementById(id).setAttribute("class", "task IU");
 		} else if (entry[1] == "Low" && entry[2] == "Low"){
-		task.setAttribute("class", "task nInU");
+		document.getElementById(id).setAttribute("class", "task nInU");
 		} else if (entry[1] == "Low" && entry[2] == "High"){
-		task.setAttribute("class", "task InU");
+		document.getElementById(id).setAttribute("class", "task InU");
 		} else if (entry[1] == "High" && entry[2] == "Low"){
-		task.setAttribute("class", "task nIU");
+		document.getElementById(id).setAttribute("class", "task nIU");
 		} else {
-		task.setAttribute("class", "task other");
+		document.getElementById(id).setAttribute("class", "task other");
 	}				
 }
 
@@ -29,11 +29,12 @@ function createTaskContent(taskClass, id, destination, title) {
 	createContent.innerHTML = title;
 }
 
-function createButton(btnclass, id, destination) {
+function createButton(btnclass, id, destination, copy) {
 	var createButton = document.createElement("button");	
 	createButton.setAttribute("class", btnclass);
 	createButton.setAttribute("id", id);
 	document.getElementById(destination).appendChild(createButton);
+	createButton.innerHTML = copy;
 }
 
 function populateList(endpoint, container) {
@@ -41,8 +42,22 @@ function populateList(endpoint, container) {
 		var results = data;
   		var resultsLength = results.length
  		for (var i = 0; i < resultsLength; i++) {
- 			createTaskShell("task-box", "a"+i, container);
- 			createTaskContent("task", "b"+i, "a"+i, results[i][0])
+ 			if (container == "inProgressTasksContainer") {
+ 				createTaskShell("task-box", "ipone" + i, container);
+ 				createTaskContent("task", "iptwo" + i, "ipone" + i, results[i][0]);
+ 				setClass(results[i], "iptwo" + i);
+ 				createButton("btn pause", "pause" + i, "ipone" + i, "Pause");
+ 			} else if (container == "todaysTasksContainer") {
+ 				createTaskShell("task-box", "tdtone" + i, container);
+ 				createTaskContent("task", "tdttwo" + i, "tdtone" + i, results[i][0]);
+ 				setClass(results[i], "tdttwo" + i);
+ 				createButton("btn start", "start" + i, "tdtone" + i, "Start");
+ 			} else if (container == "tasksContainer") {
+ 				createTaskShell("task-box", "atone" + i, container);
+ 				createTaskContent("task", "attwo" + i, "atone" + i, results[i][0]);
+ 				setClass(results[i], "attwo" + i);
+ 				createButton("btn att", "att" + i, "atone" + i, "Add to Today");
+ 			} 			
  		}
  	});
  }
@@ -50,7 +65,9 @@ function populateList(endpoint, container) {
 
  //execute
 $(document).ready(function() {
-	populateList("/getToDoToday", "todaysTasksContainer");	
+	populateList("/getInProgress", "inProgressTasksContainer");	
+	populateList("/getToDoToday", "todaysTasksContainer");
+	populateList("/getTasks", "tasksContainer");
 });
 
 
