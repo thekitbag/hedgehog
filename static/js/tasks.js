@@ -16,20 +16,20 @@ function setClass(entry, id) {
 
 function setShellHeight(entry, id) {
 	if (entry[3] == 1 ) {
-		document.getElementById(id).style.height = "50px";
+		document.getElementById(id).style.height = "75px";
 		} else if (entry[3] == 2 ){
 		document.getElementById(id).style.height = "100px";
 		} else if (entry[3] == 3 ){
 		document.getElementById(id).style.height = "150px";
 		} else if (entry[3] == 5 ){
-		document.getElementById(id).style.height = "250px";
+		document.getElementById(id).style.height = "200px";
 		} else if (entry[3] == 8 ){
-		document.getElementById(id).style.height = "400px";
+		document.getElementById(id).style.height = "300px";
 		} else if (entry[3] == 13 ){
-		document.getElementById(id).style.height = "800px";
+		document.getElementById(id).style.height = "400px";
 		}
 		else {
-		document.getElementById(id).style.height = "20px";
+		document.getElementById(id).style.border = "dotted";
 	}				
 }
 
@@ -37,18 +37,18 @@ function setShellWidth(entry, id) {
 	if (entry[4] == 1 ) {
 		document.getElementById(id).style.width = "15%";
 		} else if (entry[4] == 2 ){
-		document.getElementById(id).style.width = "31%";
+		document.getElementById(id).style.width = "20%";
 		} else if (entry[4] == 3 ){
-		document.getElementById(id).style.width = "46%";
+		document.getElementById(id).style.width = "25%";
 		} else if (entry[4] == 5 ){
-		document.getElementById(id).style.width = "62%";
+		document.getElementById(id).style.width = "30%";
 		} else if (entry[4] == 8 ){
-		document.getElementById(id).style.width = "77%";
+		document.getElementById(id).style.width = "35%";
 		} else if (entry[4] == 13 ){
-		document.getElementById(id).style.width = "100%";
+		document.getElementById(id).style.width = "40%";
 		}
 		else {
-		document.getElementById(id).style.width = "50%";
+		document.getElementById(id).style.border = "dotted";
 	}				
 }
 
