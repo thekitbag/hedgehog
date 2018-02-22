@@ -1,5 +1,2 @@
-add ability to add to to-do today
-add ability to view today's tasks
-add ability to complete a task
 add ability to view completed tasks
 add ability to add more categories and epics

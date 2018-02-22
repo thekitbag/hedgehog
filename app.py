@@ -1,8 +1,11 @@
 from flask import Flask, jsonify, render_template, request, json
-import time
+from datetime import datetime
 import sqlite3
+
 app = Flask(__name__)
 db = 'hedgehog.sqlite3' 
+now = datetime.now()
+
 
 #routes for displaying pages
 
@@ -30,14 +33,14 @@ def showAddTask():
 def showToDoToday():
     return render_template('todotoday.html')
 
-showToDoToday    
-#routes for button actions
+    
+#routes for list populators
 
 @app.route('/getTasks',methods=['POST','GET'])
 def getTasks():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance FROM Tasks WHERE Status like 'Not Started'")
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity FROM Tasks WHERE Status like 'Not Started'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -45,9 +48,19 @@ def getTasks():
 def getInProgress():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance FROM Tasks WHERE Status like 'In Progress'")
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity FROM Tasks WHERE Status like 'In Progress'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
+
+@app.route('/getToDoToday',methods=['POST','GET'])
+def getToDoToday():    
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity FROM Tasks WHERE Status like 'To Do Today'")
+    all_rows = c.fetchall()
+    return jsonify(all_rows)
+
+#routes for filters
 
 @app.route('/getHardDeadlines',methods=['POST','GET'])
 def getHardDeadlines():    
@@ -57,13 +70,6 @@ def getHardDeadlines():
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
-@app.route('/getToDoToday',methods=['POST','GET'])
-def getToDoToday():    
-    conn = sqlite3.connect(db)
-    c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance FROM Tasks WHERE Status like 'To Do Today'")
-    all_rows = c.fetchall()
-    return jsonify(all_rows)
 
 @app.route('/getDone',methods=['POST','GET'])
 def getDone():    
@@ -72,6 +78,8 @@ def getDone():
     c.execute("SELECT Title FROM Tasks WHERE Status like 'Done'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
+
+#route for adding a new task
 
 @app.route('/addTask',methods=['POST','GET'])
 def addTask():
@@ -86,23 +94,30 @@ def addTask():
     _deadline = request.form['inputDeadline']
     _deadlineType = request.form['deadlineType']
     _status = "Not Started"
+    _created = datetime.now()
+
+
+
     
     #send details from the form to the db
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("INSERT INTO Tasks (Title, Description, Type, Epic, Complexity, Time, Urgency, Importance, Deadline, Deadline_Type, Status) VALUES (?,?,?,?,?,?,?,?,?,?,?);", (_title, _description, _type, _epic, _complexity, _time, _urgency, _importance, _deadline, _deadlineType, _status))
+    c.execute("INSERT INTO Tasks (Title, Description, Type, Epic, Complexity, Time, Urgency, Importance, Deadline, Deadline_Type, Status, Created) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);", (_title, _description, _type, _epic, _complexity, _time, _urgency, _importance, _deadline, _deadlineType, _status, _created))
     conn.commit()
     conn.close()
     return json.dumps({'message':'New Task added successfully !'})
+
+#routes for performing actions on tasks
 
 @app.route('/startTask',methods=['POST','GET'])
 def startTask():
         jsonData = request.get_json()
         taskTitle = jsonData['title']
+        _started = datetime.now()
 
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("UPDATE Tasks SET Status = 'In Progress' where Title = ?",(taskTitle,))
+        c.execute("UPDATE Tasks SET Status = 'In Progress', Started = ? where Title = ?",(_started, taskTitle))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
@@ -128,7 +143,7 @@ def stopTask():
 
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("UPDATE Tasks SET Status = 'Not Started' where Title = ?",(taskTitle,))
+        c.execute("UPDATE Tasks SET Status = 'To Do Today' where Title = ?",(taskTitle,))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
@@ -137,10 +152,11 @@ def stopTask():
 def finishTask():
         jsonData = request.get_json()
         taskTitle = jsonData['title']
+        _finished = datetime.now()
 
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("UPDATE Tasks SET Status = 'Done' where Title = ?",(taskTitle,))
+        c.execute("UPDATE Tasks SET Status = 'Done', Finished = ? where Title = ?",(_finished, taskTitle))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
@@ -156,6 +172,30 @@ def reopenTask():
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
+
+@app.route('/moveToBacklog',methods=['POST','GET'])
+def moveToBacklog():
+        jsonData = request.get_json()
+        taskTitle = jsonData['title']
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute("UPDATE Tasks SET Status = 'Not Started' where Title = ?",(taskTitle,))
+        conn.commit()
+        conn.close()
+        return json.dumps({'message':'status updated!'})
+
+@app.route('/archiveTask',methods=['POST','GET'])
+def archiveTask():
+        jsonData = request.get_json()
+        taskTitle = jsonData['title']
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute("UPDATE Tasks SET Status = 'Archived' where Title = ?",(taskTitle,))
+        conn.commit()
+        conn.close()
+        return json.dumps({'message':'status updated!'})
+
+
 
 #route for shutting down the sserver
 def shutdown_server():
