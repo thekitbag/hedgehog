@@ -1,16 +1,25 @@
-function populateList(endpoint, container) {
+function populateList(container, endpoint) {
 	$.get(endpoint, function(data) {
 		var results = data;
   		var resultsLength = results.length
  		for (var i = 0; i < resultsLength; i++) {
- 			if (container == "epicContainer") {
- 				document.getElementById(results[i]).appendChild(container);
- 			} else if (container == "typeContainer") {
- 				document.getElementById(results[i]).appendChild(container); 				
- 			} else console.log("Container does not exist");			
+ 			if (container == "typeContainer") {
+ 				var listItem = document.createElement("div");
+ 				listItem.setAttribute("class", "list-item");
+ 				listItem.innerHTML = results[i];
+ 				document.getElementById(container).appendChild(listItem)
+ 			} else if (container == "epicContainer") {
+ 				var listItem = document.createElement("div");
+ 				listItem.setAttribute("class", "list-item");
+ 				listItem.innerHTML = results[i];
+ 				document.getElementById(container).appendChild(listItem)
+ 			} else  console.log("list does not exist"); 			 			
  		}
  	});
  }
 
- populateList("/getEpics", "epicContainer");
- populateList("/getTypes", "typeContainer");
+ $(document).ready(function() {
+	populateList("typeContainer","/getTypes");
+	populateList("epicContainer","/getEpics");	
+	
+});

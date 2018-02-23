@@ -69,7 +69,7 @@ def getToDoToday():
 def getEpics():
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Epics FROM Settings")
+    c.execute("SELECT Name FROM Settings where Setting like 'Epic'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -77,7 +77,7 @@ def getEpics():
 def getTypes():
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Types FROM Settings")
+    c.execute("SELECT Name FROM Settings where Setting like 'Task Type'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 

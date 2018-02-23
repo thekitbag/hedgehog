@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=11">
     <link rel="stylesheet" type="text/css" href="../static/css/add-task-styles.css?version=1">
     <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/addtask.js?version=14"></script>
+    <script src="../static/js/addtask.js?version=17"></script>
     <script src="../static/js/functions.js?version=1"></script>
 </head>
 
@@ -67,26 +67,12 @@
 			</div>
 			<div class="half-width-field" id="taskType">
 				<label for="inputType" class="field-title">Task Type</label>
-				<select name="inputType" class="dropdown">
-	          		<option value="JIRA">JIRA</option>
-	          		<option value="Hipchat">Hipchat</option>
-	          		<option value="Email">Email</option>
-	          		<option value="F2F">F2F</option>
-	          		<option value="Meeting">Meeting</option>
-	          		<option value="Review">Review</option>
-	          		<option value="Think">Think</option>
-	          		<option value="Other">Other</option>
+				<select name="inputType" class="dropdown" id="typeList">	          		
 	          	</select>
 	        </div>
 	        <div class="half-width-field">
 	        	<label for="inputEpic" class="field-title">Epic</label>
-	          	<select name="inputEpic" class="dropdown">
-	          		<option value="Poker">Poker </option>
-	          		<option value="DFG">DFG</option>  
-	          		<option value="Multi-player">Multi-player</option>
-	          		<option value="Personal">Personal</option>
-	          		<option value="Admin">Admin</option>
-	          		<option value="Other">Other</option>
+	          	<select name="inputEpic" class="dropdown" id="epicList">	          		
 	            </select>
 	        </div>
 	        <div class="half-width-field" id="deadline">

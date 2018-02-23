@@ -2,80 +2,24 @@
 	background-color: #456a32;
 	height:100%;
 }
+
 .container {
-	width:100%;
+    width: 50%;
+    height: 500px;
+    background-color: pink;
+    float: left;
 }
 
-.container h1 {
-  margin-top: 0px;
-}
-.task-box {
-  width: 49%;
-  height: 75px;
-  background-color: grey;
-  border: 3px solid black;
-  margin: 5px;
+input {
+  width:100%;
+  height:50px;
 }
 
-.task {
-  text-align: center;
-  display: inline-block;
-  width: 70%;
-  height: 100%;
-  font-size:24px;
-  float:left;
+.list-item {
+    width: 100%;
+    height: 50px;
+    background-color: green;
+    margin: 2px;
+    border: 2px solid black;
 }
-
-.IU {
-  background-color: red;
-}
-
-.InU {
-  background-color: yellow;
-}
-
-.nIU {
-  background-color: orange;
-}
-
-.nInU {
-  background-color: green;
-}
-
-.other {
-	background-color: grey;
-}
-
-.btn {
-	width: 30%;
-  height: 50%;
-  float: right;
-}
-
-.start {
-	background-color: green;
-}
-
-.pause {
-	background-color: orange;
-}
-
-.done {
-    background-color: black;
-    color: green;
-}
-    
-
-.backlog {
-    background-color: grey;   
-}
-
-.att {
-  background-color: violet;
-}
-
-.archive {
-  background-color: pink;  
-}
-
 

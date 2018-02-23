@@ -3,6 +3,11 @@ $(function(){
 		location.href="showHomePage";		
 	});
 
+	$('#profilebtn').click(function(){
+		location.href="showProfile";		
+	});
+	
+
 	$('#killserver').click(function(){
 		
 		$.ajax({
