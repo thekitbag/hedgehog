@@ -33,6 +33,10 @@ def showAddTask():
 def showToDoToday():
     return render_template('todotoday.html')
 
+@app.route('/showProfile')
+def showProfile():
+    return render_template('profile.html')
+
     
 #routes for list populators
 
@@ -59,6 +63,24 @@ def getToDoToday():
     c.execute("SELECT Title, Urgency, Importance, Time, Complexity FROM Tasks WHERE Status like 'To Do Today'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
+
+#routes for retreiving user specific info for the profile
+@app.route('/getEpics',methods=['POST','GET'])
+def getEpics():
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT Epics FROM Settings")
+    all_rows = c.fetchall()
+    return jsonify(all_rows)
+
+@app.route('/getTypes',methods=['POST','GET'])
+def getTypes():
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT Types FROM Settings")
+    all_rows = c.fetchall()
+    return jsonify(all_rows)
+
 
 #routes for filters
 
