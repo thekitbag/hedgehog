@@ -263,5 +263,9 @@ $(document).on("click",".archive",function(){
 		});	
 	});
 
+$(document).on("click","#quickAddBtn",function(){
+	location.href="showAddTask";
+});
+
 
 	

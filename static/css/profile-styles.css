@@ -4,22 +4,45 @@
 }
 
 .container {
-    width: 50%;
-    height: 500px;
-    background-color: pink;
+    width: 45%;
+    height: 100%;
+    margin: 2.5%;
+    margin-top: 0;
+    background-color: #4d0099;
     float: left;
 }
 
+.main {
+    height: 74%;
+}
+
 input {
-  width:100%;
-  height:50px;
+    width: 90%;
+    height: 50px;
+    margin-left: 5%;
+    margin-bottom: 20px;
 }
 
 .list-item {
-    width: 100%;
+    width: 90%;
     height: 50px;
-    background-color: green;
-    margin: 2px;
+    background-color: white;
+    margin-top: 2px;
+    margin-left: 5%;
     border: 2px solid black;
+    text-align: center;
+    font-size: 44px;
+}
+
+#btnAddEpic {
+    margin-left: 25%;
+    margin-bottom: 20px;
+    width: 50%;
+}
+
+#btnAddType {
+    margin-left: 25%;
+    margin-bottom: 20px;
+    width: 50%;
 }
 

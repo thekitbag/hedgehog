@@ -20,6 +20,46 @@ function populateList(container, endpoint) {
 
  $(document).ready(function() {
 	populateList("typeContainer","/getTypes");
-	populateList("epicContainer","/getEpics");	
-	
+	populateList("epicContainer","/getEpics");		
 });
+
+ $(function(){
+	$('#btnAddEpic').click(function(){
+		var epic = $('#addEpic').val();
+		var data = {"epic":epic};
+		$.ajax({
+			type: 'POST',
+		    contentType: 'application/json',
+		    url: '/addEpic',
+		    dataType : 'json',
+		    data : JSON.stringify(data),
+		    success: function(response){
+				console.log(response);
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
+});
+
+  $(function(){
+	$('#btnAddType').click(function(){
+		var epic = $('#addType').val();
+		var data = {"type":epic};
+		$.ajax({
+			type: 'POST',
+		    contentType: 'application/json',
+		    url: '/addType',
+		    dataType : 'json',
+		    data : JSON.stringify(data),
+		    success: function(response){
+				console.log(response);
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
+});
+

@@ -6,6 +6,23 @@
 	width:100%;
 }
 
+#quickAddBtn {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+    background-color: #4d0099;
+    color: white;
+    position: fixed;
+    top: 88%;
+    left: 94%;
+    font-size: 93px;
+    text-indent: 23px;
+}
+
+#quickAddBtn:hover {
+  cursor: pointer;
+}
+
 .container h1 {
   margin-top: 0px;
 }

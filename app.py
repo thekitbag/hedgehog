@@ -65,6 +65,7 @@ def getToDoToday():
     return jsonify(all_rows)
 
 #routes for retreiving user specific info for the profile
+
 @app.route('/getEpics',methods=['POST','GET'])
 def getEpics():
     conn = sqlite3.connect(db)
@@ -80,6 +81,35 @@ def getTypes():
     c.execute("SELECT Name FROM Settings where Setting like 'Task Type'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
+
+#routes for adding new user specific info for the profile
+
+@app.route('/addEpic',methods=['POST','GET'])
+def addEpic():
+        _setting = "Epic"
+        jsonData = request.get_json()
+        _epicName = jsonData['epic']
+        
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute("INSERT INTO Settings (Setting, Name) VALUES (?,?);", (_setting, _epicName))
+        conn.commit()
+        conn.close()
+        return json.dumps({'message':'Epic Added!'})
+
+@app.route('/addType',methods=['POST','GET'])
+def addType():
+        _setting = "Task Type"
+        jsonData = request.get_json()
+        _typeName = jsonData['type']
+        
+        conn = sqlite3.connect(db)
+        c = conn.cursor()
+        c.execute("INSERT INTO Settings (Setting, Name) VALUES (?,?);", (_setting, _typeName))
+        conn.commit()
+        conn.close()
+        return json.dumps({'message':'Epic Added!'})
+
 
 
 #routes for filters
@@ -118,10 +148,6 @@ def addTask():
     _status = "Not Started"
     _created = datetime.now()
 
-
-
-    
-    #send details from the form to the db
     conn = sqlite3.connect(db)
     c = conn.cursor()
     c.execute("INSERT INTO Tasks (Title, Description, Type, Epic, Complexity, Time, Urgency, Importance, Deadline, Deadline_Type, Status, Created) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);", (_title, _description, _type, _epic, _complexity, _time, _urgency, _importance, _deadline, _deadlineType, _status, _created))
