@@ -11,8 +11,6 @@ $(function(){
 				console.log(error);
 			}
 		});
-
-		location.href="showTasks"
 	});
 });
 

@@ -14,38 +14,25 @@ function setClass(entry, id) {
 	}				
 }
 
-function setShellHeight(entry, id) {
-	if (entry[3] == 1 ) {
-		document.getElementById(id).style.height = "75px";
-		} else if (entry[3] == 2 ){
-		document.getElementById(id).style.height = "100px";
-		} else if (entry[3] == 3 ){
-		document.getElementById(id).style.height = "150px";
-		} else if (entry[3] == 5 ){
-		document.getElementById(id).style.height = "200px";
-		} else if (entry[3] == 8 ){
-		document.getElementById(id).style.height = "300px";
-		} else if (entry[3] == 13 ){
-		document.getElementById(id).style.height = "400px";
-		}
-		else {
-		document.getElementById(id).style.border = "dotted";
-	}				
-}
 
 function setShellWidth(entry, id) {
-	if (entry[4] == 1 ) {
+	if (entry[3] == 5 ){
+		document.getElementById(id).style.width = "10%";
+		} else if (entry[3] == 15 ){
 		document.getElementById(id).style.width = "15%";
-		} else if (entry[4] == 2 ){
-		document.getElementById(id).style.width = "20%";
-		} else if (entry[4] == 3 ){
+		} else if (entry[3] == 30 ){
 		document.getElementById(id).style.width = "25%";
-		} else if (entry[4] == 5 ){
-		document.getElementById(id).style.width = "30%";
-		} else if (entry[4] == 8 ){
-		document.getElementById(id).style.width = "35%";
-		} else if (entry[4] == 13 ){
-		document.getElementById(id).style.width = "40%";
+		} else if (entry[3] == 60 ){
+		document.getElementById(id).style.width = "45%";
+		} else if (entry[3] == 120 ){
+		document.getElementById(id).style.width = "65%";
+		} else if (entry[3] == 240 ){
+		document.getElementById(id).style.width = "80%";
+		} else if (entry[3] == 500 ){
+		document.getElementById(id).style.width = "100%";
+		}
+		else if (entry[3] == 1000 ){
+		document.getElementById(id).style.width = "100%";
 		}
 		else {
 		document.getElementById(id).style.border = "dotted";
@@ -81,29 +68,26 @@ function populateList(endpoint, container) {
   		var resultsLength = results.length
  		for (var i = 0; i < resultsLength; i++) {
  			if (container == "inProgressTasksContainer") {
- 				createTaskShell("task-box", "ipone" + i, container);
- 				setShellHeight(results[i], "ipone" + i);
+ 				createTaskShell("task-box", "ipone" + i, container); 				
  				setShellWidth(results[i], "ipone" + i);
  				createTaskContent("task", "iptwo" + i, "ipone" + i, results[i][0]);
  				setClass(results[i], "iptwo" + i);
  				createButton("btn pause", "pause" + i, "ipone" + i, "Pause");
- 				createButton("btn done", "done" + i, "ipone" + i, "Done");
+ 				createButton("btn done", "done" + i, "ipone" + i, "Done"); 				
  			} else if (container == "todaysTasksContainer") {
  				createTaskShell("task-box", "tdtone" + i, container);
- 				setShellHeight(results[i], "tdtone" + i);
  				setShellWidth(results[i], "tdtone" + i);
  				createTaskContent("task", "tdttwo" + i, "tdtone" + i, results[i][0]);
  				setClass(results[i], "tdttwo" + i);
  				createButton("btn start", "start" + i, "tdtone" + i, "Start");
- 				createButton("btn backlog", "backlog" + i, "tdtone" + i, "Backlog");
+ 				createButton("btn backlog", "backlog" + i, "tdtone" + i, "Backlog"); 				
  			} else if (container == "tasksContainer") {
  				createTaskShell("task-box", "atone" + i, container);
- 				setShellHeight(results[i], "atone" + i);
  				setShellWidth(results[i], "atone" + i);
  				createTaskContent("task", "attwo" + i, "atone" + i, results[i][0]);
  				setClass(results[i], "attwo" + i);
  				createButton("btn att", "att" + i, "atone" + i, "Add to Today");
- 				createButton("btn archive", "archive" + i, "atone" + i, "Archive");
+ 				createButton("btn archive", "archive" + i, "atone" + i, "Archive"); 				
  			} 			
  		}
  	});

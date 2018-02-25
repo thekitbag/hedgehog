@@ -3,7 +3,6 @@ add ability to add more categories and epics
 add epic, type and deadline info the task
 remove complexity and time and repace with effort that defines width, height should be standard
 add ability to view completed tasks
-add ability to add a task from the all tasks page
 Implement GA and Optimize
 Stats!
 Achievements!

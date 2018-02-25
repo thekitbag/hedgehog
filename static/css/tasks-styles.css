@@ -32,6 +32,7 @@
   background-color: grey;
   border: 3px solid black;
   margin: 5px;
+  min-width:210px;
 }
 
 .task {
@@ -41,6 +42,14 @@
   height: 100%;
   font-size:24px;
   float:left;
+}
+
+.pencil-icon {
+  background-image: '../images/edit-icon.JPEG'
+}
+
+.task:hover {
+  cursor: pointer;
 }
 
 .IU {
