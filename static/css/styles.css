@@ -14,7 +14,7 @@ html, body {
 }
 
 .main {
-    height: 74%;
+    height: 67%;
     width:100%;
     background-color: grey;
     min-height: 300px;
@@ -78,6 +78,8 @@ html, body {
     height: 10%;
     width: 100%;
     background-color: beige;
+    position: absolute;
+    bottom:0;    
 }
 
 

@@ -2,12 +2,15 @@
 <html lang="en">
 
 <head>
-    <title>Hedgehog</title>    
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=15">
-    <link rel="stylesheet" type="text/css" href="../static/css/tasks-styles.css?version=13">
+    <title>Hedgehog</title> 
+    <meta http-equiv="Cache-Control" content="no-cache"/>    
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/add-task-styles.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/tasks-styles.css">
     <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/tasks.js?version=73"></script>
-    <script src="../static/js/functions.js?version=3"></script>
+    <script src="../static/js/tasks.js"></script>
+    <script src="../static/js/functions.js"></script>
+    <script src="../static/js/addtask.js"></script>
 </head>
 <body>
 	<div class="header">
@@ -37,11 +40,90 @@
       <div class="bggb" id="btnGetDone">
         <p>Done</p>
       </div>
-    </div>
-    </div>
+      <div id="editTaskOverlay">
+        <div id="close">X</div>
+        <form class="form-add-task" id="editTaskField">
+          <div class="full-width-field" id="title">
+            <label for="inputTitle" class="field-title">Title</label>
+            <input name="inputTitle" id="inputTitle" class="field-input" required>
+          </div>
+          <div class="full-width-field" id="description">
+            <label for="inputDescription" class="field-title">Description</label>
+                  <input name="inputDescription" id="inputDescription" class="field-input" required>
+          </div>
+          <div class="quarter-width-field" id="difficulty">
+            <label for="inputComplexity" class="field-title">Complexity</label>
+            <select name="inputComplexity" class="dropdown" id="complexity-dropdown">
+              <option disabled selected value> -- select -- </option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="8">8</option>
+              <option value="13">13</option>          
+            </select>
+          </div>
+          <div class="quarter-width-field" id="time">
+            <label for="inputTime" class="field-title">Time</label>
+            <select name="inputTime" class="dropdown">
+              <option disabled selected value> -- select -- </option>
+              <option value="5">5 mins</option>
+              <option value="15">15 mins</option>
+              <option value="30">30 mins</option>
+              <option value="60">1 hour</option>
+              <option value="120">2hours</option>
+              <option value="240">4 hours</option>
+              <option value="500">1 day</option>
+              <option value="1000">2 days</option>            
+            </select>
+          </div>
+          <div class="quarter-width-field" id="urgency">
+            <label for="inputUrgency" class="field-title">Urgency</label>
+            <select name="inputUrgency" class="dropdown">
+              <option disabled selected value> -- select -- </option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+          <div class="quarter-width-field" id="importance">
+            <label for="inputImportance" class="field-title">Importance</label>
+            <select name="inputImportance" class="dropdown">
+              <option disabled selected value> -- select -- </option>
+              <option value="High">High</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+          <div class="half-width-field" id="taskType">
+            <label for="inputType" class="field-title">Task Type</label>
+            <select name="inputType" class="dropdown" id="typeList">
+              <option disabled selected value> -- select -- </option>               
+                  </select>
+          </div>
+          <div class="half-width-field">
+            <label for="inputEpic" class="field-title">Epic</label>
+              <select name="inputEpic" class="dropdown" id="epicList">
+                <option disabled selected value> -- select -- </option>               
+              </select>
+          </div>
+          <div class="half-width-field" id="deadline">
+            <label for="inputDeadline" class="field-title">Deadline</label>
+              <input type="date" name="inputDeadline" id="inputDeadline" class="dropdown" required>
+          </div>
+          <div class="half-width-field" id="deadlineType">
+            <label for="deadlineType" class="field-title">Deadline Type</label>
+            <select name="deadlineType" class="dropdown">
+          <option value="HARD">HARD</option>
+          <option value="SOFT">SOFT</option>
+            </select>               
+          </div>
+          <div id="taskIdDiv">
+            <input name="taskId" id="taskId" class="field-input" required>
+          </div>
+              <button id="btnEditTask" class="bggb" type="button">Edit Task</button>
+          </form>
+      </div>    
+  </div>
 
 	</div>	
-	<div class ="footer">
-		<button id="killserver" class="bggb" type="button">killserver</button>
-	</div>
+	
 </body>

@@ -44,7 +44,7 @@ def showProfile():
 def getTasks():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance, Time, Complexity FROM Tasks WHERE Status like 'Not Started'")
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE Status like 'Not Started'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -52,7 +52,7 @@ def getTasks():
 def getInProgress():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance, Time, Complexity FROM Tasks WHERE Status like 'In Progress'")
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE Status like 'In Progress'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -60,7 +60,7 @@ def getInProgress():
 def getToDoToday():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance, Time, Complexity FROM Tasks WHERE Status like 'To Do Today'")
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE Status like 'To Do Today'")
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -154,6 +154,42 @@ def addTask():
     conn.commit()
     conn.close()
     return json.dumps({'message':'New Task added successfully !'})
+
+@app.route('/editTask',methods=['POST','GET'])
+def editTask():
+    _id = request.form['taskId']
+    _title = request.form['inputTitle'] 
+    _description = request.form['inputDescription']   
+    _type = request.form['inputType']
+    _epic = request.form['inputEpic']
+    _complexity = request.form['inputComplexity']
+    _time = request.form['inputTime']
+    _urgency = request.form['inputUrgency']
+    _importance = request.form['inputImportance']
+    _deadline = request.form['inputDeadline']
+    _deadlineType = request.form['deadlineType']
+    _status = "Not Started"
+    _created = datetime.now()
+
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("UPDATE Tasks SET Title = ?, Description = ?, Type = ?, Epic = ?, Complexity = ?, Time = ?, Urgency = ?, Importance =?, Deadline = ?, Deadline_Type = ? WHERE ID = ?;", (_title, _description, _type, _epic, _complexity, _time, _urgency, _importance, _deadline, _deadlineType, _id))
+    conn.commit()
+    conn.close()
+    return json.dumps({'message':'New Task added successfully !'})
+
+#route for retriving details of a single task
+
+@app.route('/getTaskDetails',methods=['POST','GET'])
+def getTaskDetails():
+    jsonData = request.get_json()
+    _taskName = jsonData['task']
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT * FROM Tasks where Title like ?", (_taskName,))
+    all_rows = c.fetchall()
+    return jsonify(all_rows)
+
 
 #routes for performing actions on tasks
 

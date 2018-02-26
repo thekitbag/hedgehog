@@ -62,6 +62,31 @@ function createButton(btnclass, id, destination, copy) {
 	createButton.innerHTML = copy;
 }
 
+function createLabel(destination, copy) {
+	var label = document.createElement("p");
+	label.setAttribute("class", "label");
+	document.getElementById(destination).appendChild(label);
+	label.innerHTML = copy;
+}
+
+function createTypeIcon(destination, copy){
+	var label = document.createElement("p");
+	label.setAttribute("class", "typeIcon");
+	document.getElementById(destination).appendChild(label);
+	label.innerHTML = copy;
+}
+
+function createDeadline(destination, copy, dltype){
+	var label = document.createElement("p");
+	label.setAttribute("class", "deadline");
+	document.getElementById(destination).appendChild(label);
+	label.innerHTML = copy;
+	if (dltype == "HARD") {
+		label.cssClass = "deadline bold";
+	}
+}
+
+
 function populateList(endpoint, container) {
 	$.get(endpoint, function(data) {
 		var results = data;
@@ -71,23 +96,32 @@ function populateList(endpoint, container) {
  				createTaskShell("task-box", "ipone" + i, container); 				
  				setShellWidth(results[i], "ipone" + i);
  				createTaskContent("task", "iptwo" + i, "ipone" + i, results[i][0]);
- 				setClass(results[i], "iptwo" + i);
+ 				setClass(results[i], "iptwo" + i);	
  				createButton("btn pause", "pause" + i, "ipone" + i, "Pause");
- 				createButton("btn done", "done" + i, "ipone" + i, "Done"); 				
+ 				createButton("btn done", "done" + i, "ipone" + i, "Done");
+ 				createLabel("ipone" + i, results[0][5]);
+ 				createTypeIcon("ipone" + i, results[0][6]);
+ 				createDeadline("ipone" + i, results[0][7], results[0][8]);
  			} else if (container == "todaysTasksContainer") {
  				createTaskShell("task-box", "tdtone" + i, container);
  				setShellWidth(results[i], "tdtone" + i);
  				createTaskContent("task", "tdttwo" + i, "tdtone" + i, results[i][0]);
  				setClass(results[i], "tdttwo" + i);
  				createButton("btn start", "start" + i, "tdtone" + i, "Start");
- 				createButton("btn backlog", "backlog" + i, "tdtone" + i, "Backlog"); 				
+ 				createButton("btn backlog", "backlog" + i, "tdtone" + i, "Backlog");
+ 				createLabel("tdtone" + i, results[0][5]);
+ 				createTypeIcon("tdtone" + i, results[0][6]);
+ 				createDeadline("tdtone" + i, results[0][7], results[0][8]); 				
  			} else if (container == "tasksContainer") {
  				createTaskShell("task-box", "atone" + i, container);
  				setShellWidth(results[i], "atone" + i);
  				createTaskContent("task", "attwo" + i, "atone" + i, results[i][0]);
  				setClass(results[i], "attwo" + i);
  				createButton("btn att", "att" + i, "atone" + i, "Add to Today");
- 				createButton("btn archive", "archive" + i, "atone" + i, "Archive"); 				
+ 				createButton("btn archive", "archive" + i, "atone" + i, "Archive");
+ 				createLabel("atone" + i, results[0][5]);
+ 				createTypeIcon("atone" + i, results[0][6]);
+ 				createDeadline("atone" + i, results[0][7], results[0][8]);  				
  			} 			
  		}
  	});
@@ -246,6 +280,57 @@ $(document).on("click",".archive",function(){
 			    }
 		});	
 	});
+
+
+$(document).on("click",".task",function(){
+ 		$("#editTaskOverlay").show(100);
+ 		task = this.innerHTML
+ 		var data = {"task":task};
+ 		myForm = document.forms['editTaskField'];
+ 		title = myForm[0]
+ 		description = myForm[1]
+ 		complexity = myForm[2]
+ 		time = myForm[3]
+ 		urgency = myForm[4]
+ 		importance = myForm[5]
+ 		type= myForm[6]
+ 		epic = myForm[7]
+ 		deadline = myForm[8]
+ 		deadline_type = myForm[9]
+ 		taskid = myForm[10]
+		$.ajax({
+			type: 'POST',
+		    contentType: 'application/json',
+		    url: '/getTaskDetails',
+		    dataType : 'json',
+		    data : JSON.stringify(data),
+		    success: function(response){
+				title.value = response[0][1];
+				description.value = response[0][2];
+				type.value = response[0][3];
+				epic.value = response[0][4];
+				complexity.value = response[0][5];
+				time.value = response[0][6];
+				urgency.value = response[0][7];
+				importance.value = response[0][8];
+				deadline.value = response[0][9];
+				deadline_type.value = response[0][10];
+				taskid.value = response[0][0]
+				
+			},
+			error: function(error){
+				console.log(error);
+			}
+		}) 
+
+	});
+
+$(document).on("click","#close",function(){ 		
+ 		$("#editTaskOverlay").hide(100);
+	});
+
+
+
 
 $(document).on("click","#quickAddBtn",function(){
 	location.href="showAddTask";

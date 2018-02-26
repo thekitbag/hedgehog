@@ -4,6 +4,7 @@
 }
 .container {
 	width:100%;
+  height:22%;
 }
 
 #quickAddBtn {
@@ -45,7 +46,8 @@
 }
 
 .pencil-icon {
-  background-image: '../images/edit-icon.JPEG'
+  height:50px
+  width:50px;
 }
 
 .task:hover {
@@ -104,4 +106,68 @@
   background-color: pink;  
 }
 
+#editTaskOverlay {
+    display: none;
+    height: 90%;
+    width: 90%;
+    border: 2px solid black;
+    position: fixed;
+    top: 5%;
+    left: 5%;
+    background-color: white;
+}
 
+#close {
+    height: 50px;
+    width: 50px;
+    background-color: grey;
+    border-radius: 25px;
+    position: relative;
+    left: 99%;
+    top: -3%;
+    font-size: 42px;
+    text-align: center;
+}
+
+#close:hover {
+  cursor: pointer;
+}
+
+form {
+    position: relative;
+    top: -15px;
+    height: 100%;
+}
+
+#taskIdDiv {
+  display: none;
+}
+
+.label {
+  font-size: 18px;
+  background-color: black;
+  display: inline;
+  color: white;
+  position: relative;
+  bottom: 19px;
+}
+
+.typeIcon {
+  font-size: 18px;
+  background-color: white;
+  display: inline;
+  color: black;
+  position: relative;
+  bottom: 74px;
+  right: 82px;
+}
+
+.deadline {
+  position: relative;
+  bottom: 20px;
+  display: inline;
+}
+
+.bold {
+  font-weight: 900;
+}

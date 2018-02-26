@@ -6,6 +6,7 @@ $(function(){
 			type: 'POST',
 			success: function(response){
 				console.log(response);
+				location.href="showTasks";
 			},
 			error: function(error){
 				console.log(error);
@@ -38,5 +39,22 @@ function populateDropdown(list, endpoint) {
 	populateDropdown("typeList","/getTypes");
 	populateDropdown("epicList","/getEpics");	
 	
+});
+
+$(function(){
+	$('#btnEditTask').click(function(){
+		$.ajax({
+			url: '/editTask',
+			data: $('form').serialize(),
+			type: 'POST',
+			success: function(response){
+				console.log(response);
+				$("#editTaskOverlay").hide(100);
+			},
+			error: function(error){
+				console.log(error);
+			}
+		});
+	});
 });
 
