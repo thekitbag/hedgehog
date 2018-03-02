@@ -5,6 +5,7 @@ import sqlite3
 app = Flask(__name__)
 db = 'hedgehog.sqlite3' 
 now = datetime.now()
+userId = 0
 
 
 #routes for displaying pages
@@ -37,6 +38,37 @@ def showToDoToday():
 def showProfile():
     return render_template('profile.html')
 
+
+#routes for user management
+
+@app.route('/createUser', methods=['POST','GET'])
+def createUser():
+    _username = request.form['username']
+    _password = request.form['password']
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("INSERT INTO Users (Username, Password_Hash) VALUES (?,?);", (_username, _password))
+    conn.commit()
+    conn.close()
+    return json.dumps({'message':'New User added successfully !'})
+
+@app.route('/logIn', methods=['POST','GET'])
+def logIn():
+    _username = request.form['username']
+    _password = request.form['password']    
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT ID FROM Users WHERE Username = ? AND Password_Hash = ?;", (_username, _password))
+    all_rows = c.fetchall()
+    global userId
+    if len(all_rows):        
+        userId = all_rows[0][0]
+        return "Log in successful"        
+    else:
+        return "Log in failed"
+    return jsonify(all_rows)
+
+
     
 #routes for list populators
 
@@ -44,7 +76,8 @@ def showProfile():
 def getTasks():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE Status like 'Not Started'")
+
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE user_id = ? AND Status like 'Not Started' ORDER BY Deadline ASC, Importance Asc;",(userId,))
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -52,7 +85,7 @@ def getTasks():
 def getInProgress():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE Status like 'In Progress'")
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE user_id = ? AND Status like 'In Progress'",(userId,))
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -60,7 +93,7 @@ def getInProgress():
 def getToDoToday():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE Status like 'To Do Today'")
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE user_id = ? AND Status like 'To Do Today'",(userId,))
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -70,7 +103,7 @@ def getToDoToday():
 def getEpics():
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Name FROM Settings where Setting like 'Epic'")
+    c.execute("SELECT Name FROM Settings WHERE user_id = ? AND Setting like 'Epic'",(userId,))
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -78,7 +111,7 @@ def getEpics():
 def getTypes():
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Name FROM Settings where Setting like 'Task Type'")
+    c.execute("SELECT Name FROM Settings WHERE user_id = ? AND Setting like 'Task Type'",(userId,))
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -113,6 +146,27 @@ def addType():
 
 
 #routes for filters
+
+@app.route('/epicFilter', methods=['POST','GET'])
+def epicFilter():
+    jsonData = request.get_json()
+    epicName = jsonData['epic']
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE Epic like ? AND Status = 'Not Started'",(epicName,))
+    all_rows = c.fetchall()    
+    return jsonify(all_rows)
+
+@app.route('/typeFilter', methods=['POST','GET'])
+def typeFilter():
+    jsonData = request.get_json()
+    typeName = jsonData['type']
+    conn = sqlite3.connect(db)
+    c = conn.cursor()
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE Type like ? AND Status = 'Not Started'",(typeName,))
+    all_rows = c.fetchall()    
+    return jsonify(all_rows)
+
 
 @app.route('/getHardDeadlines',methods=['POST','GET'])
 def getHardDeadlines():    

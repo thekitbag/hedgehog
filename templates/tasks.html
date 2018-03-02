@@ -21,26 +21,8 @@
     <a id="currentTask">Current Task</a>
     <a id="profilebtn">Profile</a>
   </div>
-	<div class="main">	
-    <div id="quickAddBtn">
-      +
-    </div>    
-    <div class="container" id="inProgressTasksContainer">
-      <h1>In Progress Tasks</h1>
-    </div>
-    <div class="container"  id="todaysTasksContainer">
-      <h1>Today's Tasks</h1>
-    </div>
-    <div class="container"  id="tasksContainer">
-      <h1>Tasks</h1>
-      <div class="action-buttons">
-      <div class="bggb" id="btnGetHardDeadlines">
-        <p>Hard Deadlines</p>
-      </div>      
-      <div class="bggb" id="btnGetDone">
-        <p>Done</p>
-      </div>
-      <div id="editTaskOverlay">
+	<div class="main">
+    <div id="editTaskOverlay">
         <div id="close">X</div>
         <form class="form-add-task" id="editTaskField">
           <div class="full-width-field" id="title">
@@ -121,9 +103,25 @@
           </div>
               <button id="btnEditTask" class="bggb" type="button">Edit Task</button>
           </form>
-      </div>    
-  </div>
-
+    </div> 	
+    <div id="quickAddBtn">
+      +
+    </div>    
+    <div class="container" id="inProgressTasksContainer">
+      <h1>In Progress Tasks</h1>
+    </div>
+    <div class="container"  id="todaysTasksContainer">
+      <h1>Today's Tasks</h1>
+    </div>
+    <div id="filter-buttons">
+        <h2>Filters</h2>
+        <div class="filter general" id="btnGetHardDeadlines">
+          Hard Deadlines
+        </div>
+    </div>
+    <div class="container"  id="tasksContainer">
+      <h1>Tasks</h1>               
+    </div>
 	</div>	
 	
 </body>

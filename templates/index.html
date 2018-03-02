@@ -4,11 +4,11 @@
 <head>
     <title>Hedgehog</title>    
     <meta http-equiv="Cache-Control" content="no-cache"/> 
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css?version=4">
-    <link rel="stylesheet" type="text/css" href="../static/css/log-in-styles.css?version=4">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css?">
+    <link rel="stylesheet" type="text/css" href="../static/css/log-in-styles.css?">
     <script src="../static/js/jquery-3.2.1.js"></script>
-    <script src="../static/js/homepage.js?version=7"></script>
-    <script src="../static/js/functions.js?version=1"></script>
+    <script src="../static/js/homepage.js"></script>
+    <script src="../static/js/functions.js"></script>
 </head>
 
 <body>
@@ -17,11 +17,19 @@
 	</div>
 	<div class="main">
 		<div class="login-box">
+			<form id="login-form">
+				<label for="username" class="field-title">Username</label>
+				<input name="username" id="inputUsername" class="field-input" required>
+				<label for="password" class="field-title">Password</label>
+				<input type="password" name="password" id="inputusername" class="field-input" required>
+			</form>
+			<button class="bggb" id="btnSignUp">Sign Up</button>
+			<button class="bggb" id="btnLogIn">Log In</button>
 		</div>
 		<div class="new-user-box">
 			<div id="skip-button">
 				<h1>Skip Registration</h1>
-			</div>
+			</div>			
 		</div>  
 	</div>
 	

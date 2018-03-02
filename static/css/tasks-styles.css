@@ -171,3 +171,29 @@ form {
 .bold {
   font-weight: 900;
 }
+
+.filter {
+  height: 32px;
+  width: 100px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.filter:hover {
+  cursor: pointer;
+}
+
+.type {
+  background-color: white;
+  color:black;  
+}
+
+.epic {
+  background-color: black;
+  color:white;
+}
+.general {
+  background-color: grey;
+  display: block;
+}

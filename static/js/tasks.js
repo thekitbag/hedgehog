@@ -99,9 +99,9 @@ function populateList(endpoint, container) {
  				setClass(results[i], "iptwo" + i);	
  				createButton("btn pause", "pause" + i, "ipone" + i, "Pause");
  				createButton("btn done", "done" + i, "ipone" + i, "Done");
- 				createLabel("ipone" + i, results[0][5]);
- 				createTypeIcon("ipone" + i, results[0][6]);
- 				createDeadline("ipone" + i, results[0][7], results[0][8]);
+ 				createLabel("ipone" + i, results[i][5]);
+ 				createTypeIcon("ipone" + i, results[i][6]);
+ 				createDeadline("ipone" + i, results[i][7], results[i][8]);
  			} else if (container == "todaysTasksContainer") {
  				createTaskShell("task-box", "tdtone" + i, container);
  				setShellWidth(results[i], "tdtone" + i);
@@ -109,9 +109,9 @@ function populateList(endpoint, container) {
  				setClass(results[i], "tdttwo" + i);
  				createButton("btn start", "start" + i, "tdtone" + i, "Start");
  				createButton("btn backlog", "backlog" + i, "tdtone" + i, "Backlog");
- 				createLabel("tdtone" + i, results[0][5]);
- 				createTypeIcon("tdtone" + i, results[0][6]);
- 				createDeadline("tdtone" + i, results[0][7], results[0][8]); 				
+ 				createLabel("tdtone" + i, results[i][5]);
+ 				createTypeIcon("tdtone" + i, results[i][6]);
+ 				createDeadline("tdtone" + i, results[i][7], results[i][8]); 				
  			} else if (container == "tasksContainer") {
  				createTaskShell("task-box", "atone" + i, container);
  				setShellWidth(results[i], "atone" + i);
@@ -119,15 +119,32 @@ function populateList(endpoint, container) {
  				setClass(results[i], "attwo" + i);
  				createButton("btn att", "att" + i, "atone" + i, "Add to Today");
  				createButton("btn archive", "archive" + i, "atone" + i, "Archive");
- 				createLabel("atone" + i, results[0][5]);
- 				createTypeIcon("atone" + i, results[0][6]);
- 				createDeadline("atone" + i, results[0][7], results[0][8]);  				
+ 				createLabel("atone" + i, results[i][5]);
+ 				createTypeIcon("atone" + i, results[i][6]);
+ 				createDeadline("atone" + i, results[i][7], results[i][8]);  				
  			} 			
  		}
  	});
  }
 
-
+function applyFilter(filteredTasks) {
+	var listToRefresh = document.getElementById("tasksContainer")
+	while (listToRefresh.childNodes.length > 2) {
+		listToRefresh.removeChild(listToRefresh.lastChild);
+	}
+	var resultsLength = filteredTasks.length
+	for (var i = 0; i < resultsLength; i++) {
+		createTaskShell("task-box", "atone" + i, "tasksContainer");
+	setShellWidth(filteredTasks[i], "atone" + i);
+	createTaskContent("task", "attwo" + i, "atone" + i, filteredTasks[i][0]);
+	setClass(filteredTasks[i], "attwo" + i);
+	createButton("btn att", "att" + i, "atone" + i, "Add to Today");
+	createButton("btn archive", "archive" + i, "atone" + i, "Archive");
+	createLabel("atone" + i, filteredTasks[i][5]);
+	createTypeIcon("atone" + i, filteredTasks[i][6]);
+	createDeadline("atone" + i, filteredTasks[i][7], filteredTasks[i][8]);
+	}
+}
 
 function refreshList(list, endpoint) {
 	var listToRefresh = document.getElementById(list)
@@ -137,6 +154,20 @@ function refreshList(list, endpoint) {
 	populateList(endpoint, list); 
 }
 
+function populateButtons(container, endpoint, styling) {
+	$.get(endpoint, function(data) {
+		var results = data;
+  		var resultsLength = results.length
+ 		for (var i = 0; i < resultsLength; i++) {
+ 			var listItem = document.createElement("div");
+			listItem.setAttribute("class", styling);
+			listItem.innerHTML = results[i];
+			document.getElementById(container).appendChild(listItem)
+ 			 			 			
+ 		}
+ 	});
+ }
+
 
 //functions executed when the page loads
 
@@ -144,10 +175,12 @@ $(document).ready(function() {
 	populateList("/getInProgress", "inProgressTasksContainer");	
 	populateList("/getToDoToday", "todaysTasksContainer");
 	populateList("/getTasks", "tasksContainer");
+	populateButtons("filter-buttons","/getEpics", "epic filter");
+	populateButtons("filter-buttons","/getTypes", "type filter");	
 });
 
 
-//functions execute don user action
+//update task status actions
 
 $(document).on("click",".start",function(){     		
      		var id = this.id; 
@@ -282,6 +315,7 @@ $(document).on("click",".archive",function(){
 	});
 
 
+//edit task
 $(document).on("click",".task",function(){
  		$("#editTaskOverlay").show(100);
  		task = this.innerHTML
@@ -330,11 +364,49 @@ $(document).on("click","#close",function(){
 	});
 
 
-
+//quick add button
 
 $(document).on("click","#quickAddBtn",function(){
 	location.href="showAddTask";
 });
 
+//filters
 
-	
+
+$(document).on("click",".epic",function(){
+	epicName = this.innerHTML;
+	var data = {"epic":epicName};
+	$.ajax({
+		type: 'POST',
+	    contentType: 'application/json',
+	    url: '/epicFilter',
+	    dataType : 'json',
+	    data : JSON.stringify(data),
+	    success: function(response){
+			var filtered = response;
+			applyFilter(filtered);
+		},
+		error: function(error){
+			console.log(error);
+		}
+	});
+});
+ 	
+$(document).on("click",".type",function(){
+	typeName = this.innerHTML;
+	var data = {"type":typeName};
+	$.ajax({
+		type: 'POST',
+	    contentType: 'application/json',
+	    url: '/typeFilter',
+	    dataType : 'json',
+	    data : JSON.stringify(data),
+	    success: function(response){
+			var filtered = response;
+			applyFilter(filtered);
+		},
+		error: function(error){
+			console.log(error);
+		}
+	});
+});
