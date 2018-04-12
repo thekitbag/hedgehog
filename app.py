@@ -125,7 +125,7 @@ def addEpic():
         
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("INSERT INTO Settings (Setting, Name) VALUES (?,?);", (_setting, _epicName))
+        c.execute("INSERT INTO Settings (User_Id, Setting, Name) VALUES (?,?,?);", (userId, _setting, _epicName))
         conn.commit()
         conn.close()
         return json.dumps({'message':'Epic Added!'})
@@ -138,7 +138,7 @@ def addType():
         
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("INSERT INTO Settings (Setting, Name) VALUES (?,?);", (_setting, _typeName))
+        c.execute("INSERT INTO Settings (User_Id, Setting, Name) VALUES (?,?,?);", (userId, _setting, _typeName))
         conn.commit()
         conn.close()
         return json.dumps({'message':'Epic Added!'})
@@ -153,7 +153,7 @@ def epicFilter():
     epicName = jsonData['epic']
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE Epic like ? AND Status = 'Not Started'",(epicName,))
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE user_id = ? AND Epic like ? AND Status = 'Not Started'",(userId, epicName))
     all_rows = c.fetchall()    
     return jsonify(all_rows)
 
@@ -163,17 +163,8 @@ def typeFilter():
     typeName = jsonData['type']
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE Type like ? AND Status = 'Not Started'",(typeName,))
+    c.execute("SELECT Title, Urgency, Importance, Time, Complexity, Epic, Type, Deadline, Deadline_Type FROM Tasks WHERE user_id = ? AND Type like ? AND Status = 'Not Started'",(userId, typeName))
     all_rows = c.fetchall()    
-    return jsonify(all_rows)
-
-
-@app.route('/getHardDeadlines',methods=['POST','GET'])
-def getHardDeadlines():    
-    conn = sqlite3.connect(db)
-    c = conn.cursor()
-    c.execute("SELECT Title FROM Tasks WHERE Deadline_Type like 'HARD'")
-    all_rows = c.fetchall()
     return jsonify(all_rows)
 
 
@@ -181,7 +172,7 @@ def getHardDeadlines():
 def getDone():    
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT Title FROM Tasks WHERE Status like 'Done'")
+    c.execute("SELECT Title FROM Tasks WHERE user_id = ? AND Status like 'Done'",(userId,))
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -204,7 +195,7 @@ def addTask():
 
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("INSERT INTO Tasks (Title, Description, Type, Epic, Complexity, Time, Urgency, Importance, Deadline, Deadline_Type, Status, Created) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);", (_title, _description, _type, _epic, _complexity, _time, _urgency, _importance, _deadline, _deadlineType, _status, _created))
+    c.execute("INSERT INTO Tasks (User_Id, Title, Description, Type, Epic, Complexity, Time, Urgency, Importance, Deadline, Deadline_Type, Status, Created) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);", (userId, _title, _description, _type, _epic, _complexity, _time, _urgency, _importance, _deadline, _deadlineType, _status, _created))
     conn.commit()
     conn.close()
     return json.dumps({'message':'New Task added successfully !'})
@@ -240,7 +231,7 @@ def getTaskDetails():
     _taskName = jsonData['task']
     conn = sqlite3.connect(db)
     c = conn.cursor()
-    c.execute("SELECT * FROM Tasks where Title like ?", (_taskName,))
+    c.execute("SELECT * FROM Tasks WHERE user_id = ? AND Title like ?", (userId, _taskName))
     all_rows = c.fetchall()
     return jsonify(all_rows)
 
@@ -255,7 +246,7 @@ def startTask():
 
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("UPDATE Tasks SET Status = 'In Progress', Started = ? where Title = ?",(_started, taskTitle))
+        c.execute("UPDATE Tasks SET Status = 'In Progress', Started = ? WHERE user_id = ? AND Title = ?",(_started, userId, taskTitle))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
@@ -267,7 +258,7 @@ def addToToday():
 
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("UPDATE Tasks SET Status = 'To Do Today' where Title = ?",(taskTitle,))
+        c.execute("UPDATE Tasks SET Status = 'To Do Today' WHERE user_id = ? AND Title = ?",(userId, taskTitle))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
@@ -281,7 +272,7 @@ def stopTask():
 
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("UPDATE Tasks SET Status = 'To Do Today' where Title = ?",(taskTitle,))
+        c.execute("UPDATE Tasks SET Status = 'To Do Today' WHERE user_id = ? AND Title = ?",(userId, taskTitle))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
@@ -294,7 +285,7 @@ def finishTask():
 
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("UPDATE Tasks SET Status = 'Done', Finished = ? where Title = ?",(_finished, taskTitle))
+        c.execute("UPDATE Tasks SET Status = 'Done', Finished = ? WHERE user_id = ? AND Title = ?",(_finished, userId, taskTitle))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
@@ -306,7 +297,7 @@ def reopenTask():
 
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("UPDATE Tasks SET Status = 'In Progress' where Title = ?",(taskTitle,))
+        c.execute("UPDATE Tasks SET Status = 'In Progress' WHERE user_id = ? AND Title = ?",(userId, taskTitle))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
@@ -317,7 +308,7 @@ def moveToBacklog():
         taskTitle = jsonData['title']
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("UPDATE Tasks SET Status = 'Not Started' where Title = ?",(taskTitle,))
+        c.execute("UPDATE Tasks SET Status = 'Not Started' WHERE user_id = ? AND Title = ?",(userId, taskTitle))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})
@@ -328,7 +319,7 @@ def archiveTask():
         taskTitle = jsonData['title']
         conn = sqlite3.connect(db)
         c = conn.cursor()
-        c.execute("UPDATE Tasks SET Status = 'Archived' where Title = ?",(taskTitle,))
+        c.execute("UPDATE Tasks SET Status = 'Archived' WHERE user_id = ? AND Title = ?",(userId, taskTitle))
         conn.commit()
         conn.close()
         return json.dumps({'message':'status updated!'})

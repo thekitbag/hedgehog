@@ -1,8 +1,10 @@
 .login-box {
-    height: 50%;
+    height: 70%;
     width: 80%;
     background-color: white;
     margin-left: 10%;
+    position: relative;
+    top: 10%;
 }
 
 .new-user-box {
@@ -32,4 +34,42 @@
 #skip-button:hover {
     background-color: #227a2a;
     cursor: pointer;
+}
+
+.field-title {
+    font-size: 34px;
+    margin-left: 45%;
+    margin-top: 5%;
+}
+
+.field-input {
+    display: block;
+    height: 24px;
+    width: 50%;
+    margin-left: 25%;
+    font-size: 34px;
+}
+
+.cta {
+    width:50%;
+    font-size:34px;
+    background-color: green;
+    margin-left: 25%;
+    border-radius: 10px;
+    margin-top: 1%;
+}
+
+.cta:hover {
+    cursor: pointer;
+    bacgr
+}
+
+#btnSignUp {
+    background-color: grey; 
+    margin-top:0;  
+}
+
+h1 {
+    margin-left: 40%;
+    margin-top:5%;
 }

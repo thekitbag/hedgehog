@@ -51,3 +51,15 @@ $(function(){
 		});
 	});
 });
+
+
+$(document).ready(function() {
+	var input = document.getElementById("inputPassword");
+	input.addEventListener("keyup", function(event) { 
+  		event.preventDefault();
+  		if (event.keyCode === 13) {
+    	document.getElementById("btnLogIn").click();
+  		}
+	});
+});
+	

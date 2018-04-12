@@ -169,6 +169,10 @@ function populateButtons(container, endpoint, styling) {
  }
 
 
+function totalTime() {
+	
+}
+
 //functions executed when the page loads
 
 $(document).ready(function() {
